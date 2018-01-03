@@ -8,20 +8,35 @@
        position: relative;
     }
     .wrap header .timer{
-    	
+    	margin: 10px;
+    	width: 350px;
+    	height: 81px;
+    	background: url(../img/exam_on.png) no-repeat;
     }
+     .wrap header .timer span{
+     	position: absolute;
+     	top: 44px;
+   		left: 173px;
+     	font-size: 22px;
+     	font-weight: bold;
+     }
     .wrap header .num{
     	position: absolute;
     	left: 50%;
     	top: 0;
     	width: 160px;
     	height: 160px;
+    	text-align: center;
     	background: #4A90E2 ;
     	font-size: 18px;
 		color: #000000;
     	transform: translate(-50%,-50%);
-    	line-height: 100px;
+    	line-height: 240px;
+    	color: #fff;
     	border-radius: 50%;
+    }
+    .wrap header .num span{
+    	font-size: 28px;
     }
     .wrap>.cont{
     	width: 944px;
@@ -43,11 +58,40 @@
         position: absolute;
         left: 40px;
         bottom: 6px;
+        z-index: 5;
         width: 31px;
         height: 46px;
         cursor: pointer;
         background:url(../img/exit.png) no-repeat;
-    }   
+    }  
+    footer>.pre{
+        position: absolute;
+        left: 104px;
+        bottom: 6px;
+        width: 48px;
+        height: 45px;
+        cursor: pointer;
+        background:url(../img/pre_ti.png) no-repeat;
+    }
+    footer>.next{
+        position: absolute;
+        left: 184px;
+        bottom: 6px;
+        width: 48px;
+        height: 45px;
+        cursor: pointer;
+        background:url(../img/next_ti.png) no-repeat;
+    }
+    footer .collect{
+        position: absolute;
+        z-index: 5;
+        left: 104px;
+        bottom: 6px;
+        width: 64px;
+        height: 44px;
+        cursor: pointer;
+        background:url(../img/exam_collect.png) no-repeat;
+    }      
     footer .start{
     	height: 100%;
     	width: 100%;
@@ -299,12 +343,16 @@
     	width: 832px;
     	height: 498px;
     	background: #FFFFFF;
-    	box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
+    	/*box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);*/
     	border-radius: 8px;
     	overflow: hidden;
     }
     .allCount header{
     	height: 60px;
+    	text-align: center;
+	    line-height: 60px;
+	    color: #fff;
+	    font-size: 16px;
     	background: #2196F3;
     }
     .allCount header div{
@@ -437,8 +485,7 @@
     	overflow: hidden;
     	width: 832px;
     	height: 498px;
-    	background: #FFFFFF;
-    	box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
+    	background: #F5FAFC;
     	border-radius: 8px;
     	overflow: hidden;
     }
@@ -447,6 +494,8 @@
     	background: #2196F3;
     	font-size: 16px;
 		color: #FFFFFF;
+		text-align: center;
+    	line-height: 60px;
 		font-weight: bold;
     }
     .allParse .cont{
@@ -1116,20 +1165,61 @@ width: 104%;
 		font-size: 20px;
 		color: #FFFFFF;
 	}
-	.mulCount .pagination{
+	.mulHead{
+		margin: 10px;
+		width: 735px;
+		height: 81px;
+		background: url(../img/exam_result.png) no-repeat;
+	}
+	.mulHead .cont{
 		position: absolute;
-		left: 368px;
-		bottom: 23px;
-		width: 80px;
+		left: 180px;
+		top:56px;
+		font-size: 22px;
+    	font-weight: bold;
+	}
+	.mulHead .cont span{
+		margin-right: 30px;
+	}
+	.mulResult{
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	.mulResult .pagination{
+		position: absolute;
+		left: 50%;
+		bottom:16px;
+		width: 100px;
 		height: 30px;
 		text-align: center;
 		line-height: 30px;
 		color: #2196F3;
 		font-size: 20px;
 		font-weight: bold;
+		transform: translateX(-50%);
 	}
-	.mulCount .pagination div{
+	.mulResult>.pagination>div{
 		display: inline-block;
 		font-size: 22px;
+		width: 30px;
+	    height: 30px;
+	    border-radius: 15px;
+	    background: #2196F3;
+	    color: #fff;
+	    cursor: pointer;
+	}
+	
+	.mulResult .btn{
+		position: absolute;
+		right: 20%;
+		bottom: 18px;
+		width: 100px;
+		height: 26px;
+		border: 2px solid #FFAA67;
+		border-radius: 100px;
+		text-align: center;
+		line-height: 26px;
+		color: #FFAA67;
 		cursor: pointer;
 	}

@@ -625,7 +625,7 @@ var vm = new Vue({
         	this.isAllCount  = !this.isAllCount;
         	this.allCount = !this.allCount;
         	this.toCountFn();
-        	window.external.extiAnswer();
+//      	window.external.extiAnswer();
         },
         toCountFn:function(){
         	var stuAnswerString = ',';
@@ -668,13 +668,7 @@ var vm = new Vue({
         	this.allCount = false;
         	this.allParse = false;
         	this.isStopAnswer = false;
-        	this.Rank = false;
-        	this.randomRusult = false;
-        	this.randomStuName = false;
-//      	this.isVie = false;
-        	this.inVie = false;
-        	this.isVied = false;
-        	this.isMulCount = false;
+        	this.isMulCount = true;
         },
         homeFn:function(){
         	var temp = window.external.extiAnswer();
@@ -895,14 +889,16 @@ var vm = new Vue({
 //      	window.external.
         	var num = this.time*60;
 			if(num > 0){
-	        	this.leftTime = this.toTwoFn(parseInt(num / 60 % 60, 10)) + ":" + this.toTwoFn(parseInt(num % 60, 10));
+	        	this.leftTime =  this.toTwoFn(parseInt(num / 60, 10)) + ":" + this.toTwoFn(parseInt(num % 60, 10));
 	        	this.isMulPanel = false;
 	        	this.isMulAnswer = true;
 	        	clearInterval(this.timer);       	
 	        	_this = this;
+	        	console.log(num)
+	        	console.log(this.leftTime)
 	        	this.timer = setInterval(function(){
 	        		num--;
-	        		var minutes = parseInt(num / 60 % 60, 10);//计算剩余的分钟 
+	        		var minutes = parseInt(num / 60, 10);//计算剩余的分钟 
 	 			 	var seconds = parseInt(num % 60, 10);//计算剩余的秒数 
 	 			 	minutes = _this.toTwoFn(minutes);
 	 			 	seconds = _this.toTwoFn(seconds);
@@ -933,8 +929,8 @@ var vm = new Vue({
         	}        	
         },
         mulNextFn:function(){
-        	if(this.current >= this.total){
-        		this.current = this.total;
+        	if(this.current >= this.mulPreFn){
+        		this.current = this.tiNumAll;
         	}else{
         		this.current++;
         	} 
@@ -989,6 +985,7 @@ var vm = new Vue({
 //				clearInterval(this.askTimer);
 //			};
 			this.initFn();
+			this.time = "";
 			this.isQuize = true;
         },
         showQuizeFn:function(){

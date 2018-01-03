@@ -17,20 +17,37 @@
     <div id="app">
         <div class="wrap" v-cloak>
             <!--<header v-show="!isQuize" > <div class="answerTime" v-show="isMulAnswer">作答时间:{{leftTime}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本题已答：0/38</div> {{tiNum}}/{{tiNumAll}}</header>-->
-            <header>
-            	<div class="timer">答题时间:12:00</div>
-            	<div class="num">12/20</div>
+            <header v-show="isMulAnswer && !isMulCount && !allParse">
+            	<div class="timer"><span>答题时间:{{leftTime}}</span></div>
+            	<div class="num"><span>{{tiNum}}</span>/{{tiNumAll}}</div>
             </header>
-            <section class="cont" v-show="isMulAnswer">
+            <section class="cont" v-show="isMulAnswer && !isMulCount && !allParse">
             	<div v-html="topicCurrent.body"></div>
             </section>
             <footer>
                 <div class="exit" @click="closeFn()"></div>
+                <div class="pre" v-show="isMulAnswer && !isMulCount && !allParse" @click="select(-1)"></div>
+                <div class="next" v-show="isMulAnswer && !isMulCount && !allParse" @click="select(1)"></div>
+                <div class="collect" v-show="isMulCount || allParse" @click="mulHomeFn()"></div>
                 <div class="start" v-show="isMulPanel">
                 	<div class="startBtn" @click="mulStartFn()">
                 		<span>BEG</span>
                 		<h5>开始答题</h5>
                 	</div>
+                </div>
+                <div class="start" v-show="isMulAnswer && !isMulCount && !allParse">
+                	<div class="startBtn" @click="isMulCountFn()">
+                		<span>END</span>
+                		<h5>结束答题</h5>
+                	</div>
+                </div>
+                <div class="mulResult" v-show="isMulCount">
+                	<div class="pagination">
+	            		<div class="pre" @click="mulPreFn()"><</div>
+	            			{{current}}/{{tiNumAll}}	
+	            		<div class="next" @click="mulNextFn()">></div>
+            		</div>
+            		<div class="btn" @click="mulParseFn()">查看解析</div>
                 </div>
             </footer>
             <!--全答控制面板-->
@@ -259,7 +276,7 @@
             	<div class="close" @click="panelCloseFn()">X</div>           	
             </div>
             <!--多题页面-->
-            <div class="mulTopic" v-show="isMul || !isQuize">
+            <div class="mulTopic" v-show="isMul || isQuize">
             	<header>套卷列表</header>
             	<div class="tag">名称</div>
             	<ul>
@@ -285,17 +302,17 @@
             	<div class="fold" :class="{'foldActive':isFold}" @click="foldFn()"></div>-->
             </div>
         	<!--多题答题进行中 -->
-        	<div class="allAnswer mulInAnswer" :class="{'isMulAnswerFold':isFold}" v-show="isMulAnswer">
+        	<!--<div class="allAnswer mulInAnswer" :class="{'isMulAnswerFold':isFold}" v-show="isMulAnswer">
             	<img src="img/refresh.png" alt="" v-show="!isFold" @click="mulHomeFn()" />
-            	<!--<div class="infor" :class="{'mulActive':mulInfor}" v-show="!isFold" @click="mulInforFn()">结束答题</div>-->
+            	<div class="infor" :class="{'mulActive':mulInfor}" v-show="!isFold" @click="mulInforFn()">结束答题</div>
             	<div class="count" :class="{'isAllCountActive':isMulCount}" v-show="!isFold" @click="isMulCountFn()">作答统计</div>
             	<div class="fold" :class="{'foldActive':isFold}" @click="foldFn()"></div>
-            </div>
-            <div class="panel" v-show="isMulAnswer">
+            </div>-->
+            <!--<div class="panel" v-show="isMulAnswer">
                 <div class="close" @click="closeFn()">X</div>
                 <div class="pre" @click="select(-1)"><</div>
                 <div class="next" @click="select(1)">></div>
-            </div>
+            </div>-->
             <!--多题结束panel-->
             <div class="mulClose" v-show="mulInfor">
             	答题结束
@@ -315,12 +332,9 @@
             	</div>
             </div>
             <!--多题统计页面-->
+             <div class="mulHead" v-show="isMulCount"><div class="cont"><span>答题总用时:12:00</span><span>题目数量:40</span><span>平均正确率:12%</span></div></div>
              <div class="allCount mulCount" v-show="isMulCount">
-            	<header>
-            		<div>答题总用时：12:35</div>
-            		<div>题目数量：4</div>
-            		<div>平均正确率：98％</div>
-            	</header>
+            	<header>正确答题:AB</header>
             	<section>
             		<div class="left">
             			<div class="item">  
@@ -341,23 +355,22 @@
             		<div class="right">
             			<div class="title">作答统计</div>
             			<div class="shape">
-        					<div class="left">正确：12人</div>
-        					<div class="right">错误：22人</div>
+        					<div id="main" style="width: 280px;height:280px;"></div>
             			</div>
             			<div class="cont">
             				<div>正确人数：22人</div>
             				<div>错误人数：12人</div>
             				<div>未答人数：12人</div>
             			</div>
-            			<div class="btn" @click="mulParseFn()">查看解析</div>
+            			<!--<div class="btn" @click="mulParseFn()">查看解析</div>-->
             		</div>
             	</section>
-            	<div class="pagination">
+            	<!--<div class="pagination">
             		<div class="pre" @click="mulPreFn()"><</div>
             			{{current}}/{{total}}	
             		<div class="next" @click="mulNextFn()">></div>
-            	</div>
-            	<span class="close" @click="panelCloseFn()">X</span>
+            	</div>-->
+            	<!--<span class="close" @click="panelCloseFn()">X</span>-->
             </div>
         </div>
     </div>   

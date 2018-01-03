@@ -1,9 +1,15 @@
-	html, body ,.wrap{
+	html, body{
        height:100%;
        background:#FFF;
        margin:0;
        padding:0;
-       /*overflow: hidden;*/
+       overflow: hidden;
+    }
+    #app{width:102%;height: 100%;overflow-y: auto;}
+    .wrap{
+    	background:#FFF;
+        margin:0;
+        padding:0;
     }
     .wrap header {
         height:60px;
