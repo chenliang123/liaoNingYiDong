@@ -6,11 +6,12 @@
     }
     .wrap header {
         height:60px;
-        background:#4A4A4A;
+        /*background:#4A4A4A;*/
         text-align:center;
         line-height:60px;
-        font-size:24px;
-        color:#FFF;
+        font-size:22px;
+        font-weight: bold;
+        color:#2196F3;
     }
     .wrap>.cont{
     	width: 944px;
@@ -20,99 +21,139 @@
     }
     footer {
         position:absolute;
-        left:50%;
-        bottom:10px;
-        transform:translateX(-250px);
-        width: 514px;
-        height: 91px;
-        background:url(../img/web_controll_bg.png);
+        left: 0;
+        bottom:0;
+        z-index: 1;
+        width: 100%;
+        height:60px;
+        text-align: center;
+        background:#FFFFFF;
+        box-shadow: 2px 0 4px 0 rgba(0,0,0,0.30);
     }
-    .footerFold{
-    	background:none;
-    	width: 95px;
-    	height: 95px;
-    }
-    footer ul{
-        margin-left:180px;
-        overflow:hidden;
-    }
-    footer>ul>li {
-        float:left;
-        width:118px;
-        height:80px;
+    footer .exit{
+        position: absolute;
+        left: 40px;
+        bottom: 6px;
+        z-index: 5;
+        width: 31px;
+        height: 46px;
         cursor: pointer;
-    }
-    /*footer>ul>li:nth-of-type(1){
-    	background: url(../img/web_img_noSel.png) center no-repeat;
-    }*/
-    footer>ul>li:nth-of-type(1){
-    	background: url(../img/web_single_no.png) center no-repeat;
-    }
-    /*footer>ul>li:nth-of-type(3){
-    	background: url(../img/web_mul_no.png) center no-repeat;
-    }*/
-    footer>ul>li:nth-of-type(2){
-    	background: url(../img/web_test_no.png) center no-repeat;
-    }
-    footer>ul>li.checkSingle{
-    	background:url(../img/web_single_sel.png) center no-repeat;
-    }
-    footer>ul>li.checkMul{
-    	background:url(../img/web_mul_sel.png) center no-repeat;
-    }
-    footer>ul>li.checkQuize{
-    	background:url(../img/web_test_sel.png) center no-repeat;
-    }
-    footer .fold{
-        position:absolute;
-        right: 10px;
-        top: 3px;
-        width:92px;
-        height:80px;
-        /* background:black; */
-    }
-    footer .foldActive{
-    	background: url(../img/web_home.png) center no-repeat;
-    }
-    footer .tips{
-        position:absolute;
-        top:-90px;
-        left: -30px;
-        width:549px;
-        height:69px;
-        background:#4A4A4A;
-    }
-    footer .tips ul{
-        overflow:hidden;
-        margin-left:0;
-        padding-top: 17px;
-        height: 100%;
-    }
-    footer ul .checkSingle{
-        background:green;
-    }
-    footer .tips ul li{
-        float:left;
-        margin-left:30px;
-        width:100px;
-        height:32px;
+        background:url(../img/exit.png) no-repeat;
+    }  
+    footer>.pre{
+        position: absolute;
+        left: 104px;
+        bottom: 6px;
+        width: 48px;
+        height: 45px;
         cursor: pointer;
-        border-radius:16px;
-        background:#FFF;
-        text-align:center;
-        line-height:32px;
-        font-size:16px;
-        color:#2196F3;
+        background:url(../img/pre_ti.png) no-repeat;
     }
-    footer .tips .shape{
-        position:absolute;
-        bottom: -20px;
-        left: 268px;
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 20px solid #4A4A4A;
+    footer>.next{
+        position: absolute;
+        left: 184px;
+        bottom: 6px;
+        width: 48px;
+        height: 45px;
+        cursor: pointer;
+        background:url(../img/next_ti.png) no-repeat;
+    }
+    footer .collect{
+        position: absolute;
+        z-index: 5;
+        left: 104px;
+        bottom: 6px;
+        width: 64px;
+        height: 44px;
+        cursor: pointer;
+        background:url(../img/exam_collect.png) no-repeat;
+    }      
+    footer .start{
+    	box-sizing: border-box;
+    	padding-left: 140px;
+    	height: 100%;
+    	width: 100%;
+    	margin: 0 auto;
+    	text-align: center;
+    }
+    footer .start  h4{
+    	position: absolute;
+    	left: 290px;
+    	display: inline-block;
+    	height: 100%;
+    	line-height: 60px;
+    	text-align: center;
+    	margin-right: 20px;
+    }
+    footer .start .startBtn{
+    	margin-right: 40px;
+    	box-sizing: border-box;
+    	padding-top: 5px;
+    	color: #FFFFFF;
+    	display: inline-block;
+    	width: 108px;
+    	height: 58px;
+        cursor: pointer;
+        color: #2196F3 ;
+        box-shadow: 0 2px 4px 0 #A5A5A5;
+		border-radius: 8px;
+    }   
+    footer .start .startBtn span{
+    	margin-bottom: 3px;
+    	display: inline-block;
+    	width: 24px;
+    	height: 24px;
+    	background:url(../img/icon_all.png) no-repeat;
+    	background-size: contain;
+		font-size: 9px;
+		color: #FFFFFF;
+		line-height: 24px;
+    }
+    footer .start .startBtn:nth-of-type(1) span{
+		width: 28px;
+		background-position-y: 6px;
+    }
+    footer .start .startBtn:nth-of-type(2) span{
+    	background:url(../img/icon_group.png) no-repeat;
+    	background-size: contain;
+    }
+    footer .start .startBtn:nth-of-type(3) span{
+    	background:url(../img/icon_random.png) no-repeat;
+    	background-size: contain;
+    }
+    footer .start .startBtn:nth-of-type(4) span{
+    	background:url(../img/icon_compete.png) no-repeat;
+    	background-size: contain;
+    }
+    footer .start .startBtn h5{
+		text-align: center;
+		font-size: 14px;
+    }
+    footer .progress{
+    	width: 100%;
+    	text-align: center;
+    }
+    footer .progress div{
+    	margin: 4px 55px;
+    	padding-top: 5px;
+    	display: inline-block;
+    	width: 128px;
+    	height: 47px;
+    	cursor: pointer;
+		box-shadow: 0 2px 4px 0 #629FFF;
+		border-radius: 8px;
+		text-align: center;
+    }
+    footer .progress div img{
+    	width: 24px;
+    	height: 24px;
+    }
+    footer .progress div span{
+    	display: block;
+    	width: 100%;
+    	text-align: center;
+    	font-size: 14px;
+    	color: #2196F3;
     }
     .panel {
         position:absolute;
@@ -472,6 +513,7 @@
     	position: absolute;
     	left: 50%;
     	top:50%;
+    	z-index: 3;
     	transform: translate(-50%,-50%);
     	overflow: hidden;
     	width: 832px;
@@ -613,7 +655,7 @@
     	overflow-y: hidden;
     	overflow-x: hidden;
     	opacity: 0.8;
-    	background: #4A4A4A;
+    	/*background: #4A4A4A;*/
     	position: absolute;
     	left:50%;
     	bottom: 90px;
@@ -623,18 +665,14 @@
     	margin: 20px;
     	text-align: center;
     	font-size: 16px;
-    	color: #FFFFFF;
+    	color: #000000;
     	height: 18px;
     	line-height: 18px;
     }
-    .groupMember ul{
-    overflow-y: scroll;
-    height: 468px;
-    width: 104%;
-    /* overflow-x: hidden; */
+    .groupMember ul{		overflow-y: scroll;		height: 468px;		width: 104%;
     }
     .groupMember ul li{
-    	background: #FFFFFF;
+    	background: #F2F2F2;
     	width: 770px;
     	position: relative;
     	margin: 20px 28px;
@@ -666,7 +704,7 @@
     	width: 78px;
     	height: 32px;
     	line-height: 32px;
-    	background: #D8D8D8;
+    	background: #FFFFFF;
     	text-align: center;
     	border-radius: 8px;
     	margin-right: 20px;
@@ -857,7 +895,28 @@
 	    animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
 	  }
 	}
-	
+	.randomPanel{
+		width: 100%;
+    	text-align: center;
+    	line-height: 60px;
+	}
+	.randomPanel div{
+		display: inline-block;
+		margin: 0 50px;
+		width: 100px;
+		height: 32px;
+		color: #4A90E2;
+		cursor: pointer;
+		border-radius: 16px;
+		border: 2px solid #4A90E2;
+    	text-align: center;
+    	line-height: 32px;
+    	font-weight: bold;
+	}
+	.randomPanel div:nth-of-type(2){
+		color: #FFAA67;
+		border: 2px solid #FFAA67;
+	}
 	.random{
 		width:420px;
 	}
@@ -902,19 +961,36 @@
 		color: white;
 		background: #FFAA67;
 	}
-	.random_result{}
-	.random_result .cont{
-		height: 400px;
+	.random_result{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+	.random_result header{
+		margin-top: 90px;
 		text-align: center;
-		line-height: 400px;
+		font-size: 24px;
+		color: #3C3C3C;
+	}
+	.random_result .cont{
+		position: relative;
+		width: 572px;
+		height: 286px;
+		margin: 90px auto;
+		/*margin: 0 auto;*/
+		text-align: center;
+		line-height: 286px;
+		background: url(../img/random_bg.png) no-repeat;
 	}
 	.random_result .cont .stuName{
 		width: 100%;
 		height: 100%;
 		text-align: center;
 		font-size: 36px;
-		color: #4A4A4A;
-		line-height: 350px;
+		color: #3C3C3C;
+		line-height: 286px;
 		font-weight: bold;
 	}
 	.random_result .cont .randomResult{
@@ -926,32 +1002,45 @@
 		font-weight: bold;
 	}
 	.random_result .cont .randomResult .name{
+		padding-top: 50px;
 		height: 35px;
 		line-height: 35px;
-		margin-top: 80px;
-		margin-bottom: 20px;
+		margin-bottom: 30px;
 	}
 	.random_result .cont .randomResult .answer{
-		/* margin-bottom: 35px; */
 		width: 249px;
 		height: 60px;
-		/* display: inline-block; */
 		line-height: 60px;
-		color: white;
-		background: #2196F3;
-		border-radius: 8px;
+		font-size: 36px;
+		color: #FA8C13;
 		margin: 0 auto 35px;
 	}
 	.random_result .cont .randomResult .reward{
-		height: 60px;
+		position: absolute;
+	    left: 50%;
+	    transform: translateX(-50%);
+	    bottom: -83px;
+	    padding-left: 46px;
+	    height: 60px;
+	    width: 470px;
+	    box-sizing: border-box;
+	    line-height: 60px;
+	    overflow: hidden;
+	    text-align: left;
+	}
+	.random_result .cont .randomResult .reward span{
+		position: absolute;
+		left: 0;
+		height: 100%;
 		line-height: 60px;
-		overflow: hidden;
-		text-align: center;
+		font-size: 14px;
+		color: #3C3C3C;
+		display: inline-block;
 	}
 	.random_result .cont .randomResult .reward li{
 		display: inline-block;
-		width: 60px;
-		height: 60px;
+		width: 58px;
+		height: 56px;
 		background: url(../img/star_grey.png) no-repeat;
 		margin: 0 12px;
 		cursor: pointer;
