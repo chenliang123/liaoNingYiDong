@@ -10,104 +10,152 @@
     	background:#FFF;
         margin:0;
         padding:0;
+        padding-bottom: 40px;
     }
     .wrap header {
         height:60px;
-        background:#4A4A4A;
+        /*background:#4A4A4A;*/
         text-align:center;
         line-height:60px;
-        font-size:24px;
-        color:#FFF;
-    }
-    footer {
-        position:fixed;
-        left:50%;
-        bottom:10px;
-        transform:translateX(-373px);
-        width: 749px;
-        height: 91px;
-        background:url(../img/web_tiku.png);
-    }
-    .footerFold{
-    	background:none;
-    	width: 95px;
-    	height: 95px;
-    }
-    footer ul{
-        margin-left: 169px;
-        margin-top: 4px;
-        overflow:hidden;
-    }
-    footer>ul>li {
-        float:left;
-        width: 122px;
-        height:80px;
-        cursor: pointer;
-    }
-    footer>ul>li>div{
-    	width: 100px;
-    	height: 34px;
-    	margin: 24px auto;
-    	text-align: center;
-    	color: #2196f3;
-    	font-size: 16px;
-    	background: #FFFFFF;
-    	border-radius: 17px;
-    	line-height: 35px;
-    }
-    footer>ul>li:nth-of-type(4){
-    	width: 111px;
-    }
-    footer .fold{
-        position:absolute;
-        right: 10px;
-        top: 3px;
-        width:92px;
-        height:80px;
-        /* background:black; */
-    }
-    footer .foldActive{
-    	background: url(../img/web_home.png) center no-repeat;
-    }
-    footer .tips{
-        position:absolute;
-        top:-90px;
-        left: 84px;
-        width:549px;
-        height:69px;
-        background:#4A4A4A;
-    }
-    footer .tips ul{
-        overflow:hidden;
-        margin-left:0;
-        padding-top: 17px;
-        height: 100%;
-    }
-    footer ul .checkSingle{
-        background:green;
-    }
-    footer .tips ul li{
-        float:left;
-        margin-left:30px;
-        width:100px;
-        height:32px;
-        cursor: pointer;
-        border-radius:16px;
-        background:#FFF;
-        text-align:center;
-        line-height:32px;
-        font-size:16px;
+        font-size:22px;
+        font-weight: bold;
         color:#2196F3;
     }
-    footer .tips .shape{
+    footer {
         position:absolute;
-        bottom: -20px;
-        left: 268px;
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 20px solid #4A4A4A;
+        left: 0;
+        bottom:0;
+        z-index: 100;
+        width: 100%;
+        height:60px;
+        text-align: center;
+        background:#FFFFFF;
+        box-shadow: 2px 0 4px 0 rgba(0,0,0,0.30);
+    }
+    footer .exit{
+        position: absolute;
+        left: 40px;
+        bottom: 6px;
+        z-index: 5;
+        width: 31px;
+        height: 46px;
+        cursor: pointer;
+        background:url(../img/exit.png) no-repeat;
+    }  
+    footer>.pre{
+        position: absolute;
+        left: 104px;
+        bottom: 6px;
+        width: 48px;
+        height: 45px;
+        cursor: pointer;
+        background:url(../img/pre_ti.png) no-repeat;
+    }
+    footer>.next{
+        position: absolute;
+        left: 184px;
+        bottom: 6px;
+        width: 48px;
+        height: 45px;
+        cursor: pointer;
+        background:url(../img/next_ti.png) no-repeat;
+    }
+    footer .collect{
+        position: absolute;
+        z-index: 5;
+        left: 104px;
+        bottom: 6px;
+        width: 64px;
+        height: 44px;
+        cursor: pointer;
+        background:url(../img/tiku_icon.png) no-repeat;
+    }      
+    footer .start{
+    	box-sizing: border-box;
+    	padding-left: 140px;
+    	height: 100%;
+    	width: 100%;
+    	margin: 0 auto;
+    	text-align: center;
+    }
+    footer .start  h4{
+    	position: absolute;
+    	left: 290px;
+    	display: inline-block;
+    	height: 100%;
+    	line-height: 60px;
+    	text-align: center;
+    	margin-right: 20px;
+    }
+    footer .start .startBtn{
+    	margin-right: 40px;
+    	box-sizing: border-box;
+    	padding-top: 5px;
+    	color: #FFFFFF;
+    	display: inline-block;
+    	width: 108px;
+    	height: 58px;
+        cursor: pointer;
+        color: #2196F3 ;
+        box-shadow: 0 2px 4px 0 #A5A5A5;
+		border-radius: 8px;
+    }   
+    footer .start .startBtn span{
+    	margin-bottom: 3px;
+    	display: inline-block;
+    	width: 24px;
+    	height: 24px;
+    	background:url(../img/icon_all.png) no-repeat;
+    	background-size: contain;
+		font-size: 9px;
+		color: #FFFFFF;
+		line-height: 24px;
+    }
+    footer .start .startBtn:nth-of-type(1) span{
+		width: 28px;
+		background-position-y: 6px;
+    }
+    footer .start .startBtn:nth-of-type(2) span{
+    	background:url(../img/icon_group.png) no-repeat;
+    	background-size: contain;
+    }
+    footer .start .startBtn:nth-of-type(3) span{
+    	background:url(../img/icon_random.png) no-repeat;
+    	background-size: contain;
+    }
+    footer .start .startBtn:nth-of-type(4) span{
+    	background:url(../img/icon_compete.png) no-repeat;
+    	background-size: contain;
+    }
+    footer .start .startBtn h5{
+		text-align: center;
+		font-size: 14px;
+    }
+    footer .myProgress{
+    	width: 100%;
+    	text-align: center;
+    }
+    footer .myProgress div{
+    	margin: 4px 55px;
+    	padding-top: 5px;
+    	display: inline-block;
+    	width: 128px;
+    	height: 47px;
+    	cursor: pointer;
+		box-shadow: 0 2px 4px 0 #629FFF;
+		border-radius: 8px;
+		text-align: center;
+    }
+    footer .myProgress div img{
+    	width: 24px;
+    	height: 24px;
+    }
+    footer .myProgress div span{
+    	display: block;
+    	width: 100%;
+    	text-align: center;
+    	font-size: 14px;
+    	color: #2196F3;
     }
     .panel {
         position:fixed;
@@ -332,17 +380,15 @@
     	left: 50%;
     	top:50%;
     	transform: translate(-50%,-50%);
-    	overflow: hidden;
     	width: 832px;
     	height: 498px;
-    	background: #FFFFFF;
-    	box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
+    	background: #F5FAFC;
     	border-radius: 8px;
-    	overflow: hidden;
     }
     .allCount header{
     	height: 60px;
     	background: #2196F3;
+    	border-radius: 8px 8px 0 0;
     }
     .allCount header div{
     	float: left;
@@ -363,7 +409,7 @@
     	float: left;
     	box-sizing: border-box;
     	width: 499px;
-    	background: #FFFFFF;
+    	/*background: #FFFFFF;*/
     }
     .allCount .left .item{
     	margin-bottom: 28px;
@@ -377,7 +423,7 @@
     	font-weight: bold;
     }
     .allCount .left .item .cont{
-    	float: left;
+    	/*float: left;*/
     	overflow: hidden;
     	width: 342px;
     	font-size: 14px;
@@ -405,11 +451,11 @@
 		font-weight: bold;
     }
 	.allCount .right .shape{
-		margin: 0 auto;
-		height: 146px;
-		width: 146px;
+		margin: -50px auto;
+		height: 280px;
+		width: 280px;
 		border-radius: 50%;
-		overflow: hidden;
+		/*overflow: hidden;*/
 	}
 	.allCount .right .shape .left{
 		float: left;
@@ -434,6 +480,7 @@
 		letter-spacing: -2.41px;
 	}
 	.allCount .right .cont{
+		margin-top: -60px;
 		overflow: hidden;
 		font-size: 16px;
 		color: #4A4A4A;
@@ -457,26 +504,43 @@
 		color: #FFAA67;
 		cursor: pointer;
 	}
-	.allCount .close{
+	.allCount>.title{
 		position: absolute;
-		left: 10px;
-		bottom: 10px;
-		cursor: pointer;
+		left: 50%;
+		top: -40px;
+		transform: translateX(-50%);
 		display: inline-block;
-		padding: 5px;
+		font-size: 18px;
+		color: #2196F3;
+		font-weight: bold;
+	}
+	.parseBtn {
+	    position: absolute;
+	    left: 50%;
+	    transform: translateX(-50%);
+	    bottom: 15px;
+	    width: 100px;
+	    height: 26px;
+	    border: 2px solid #FFAA67;
+	    border-radius: 100px;
+	    text-align: center;
+	    line-height: 26px;
+	    color: #FFAA67;
+	    cursor: pointer;
 	}
 	.allParse{
     	position: absolute;
-    	left: 50%;
-    	top:50%;
-    	transform: translate(-50%,-50%);
-    	overflow: hidden;
-    	width: 832px;
-    	height: 498px;
-    	background: #FFFFFF;
-    	box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
-    	border-radius: 8px;
-    	overflow: hidden;
+	    left: 50%;
+	    top: 50%;
+	    z-index: 3;
+	    transform: translate(-50%,-50%);
+	    overflow: hidden;
+	    width: 832px;
+	    height: 498px;
+	    background: #FFFFFF;
+	    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
+	    border-radius: 8px;
+	    overflow: hidden;
     }
     .allParse header{
     	height: 60px;
@@ -607,29 +671,30 @@
     .groupMember{
     	width: 832px;
     	height: 532px;
+    	overflow-y: hidden;
+    	overflow-x: hidden;
     	opacity: 0.8;
-    	background: #4A4A4A;
+    	/*background: #4A4A4A;*/
     	position: absolute;
     	left:50%;
-		bottom: 90px;
+    	bottom: 90px;
     	transform:translateX(-50%);
-    	overflow: hidden;
     }
     .groupMember header{
     	margin: 20px;
     	text-align: center;
     	font-size: 16px;
-    	color: #FFFFFF;
+    	color: #000000;
     	height: 18px;
     	line-height: 18px;
     }
     .groupMember ul{
-    height: 468px;
-    width: 104%;
-    overflow-y: scroll;
+		overflow-y: scroll;
+		height: 468px;
+		width: 104%;
     }
     .groupMember ul li{
-    	background: #FFFFFF;
+    	background: #F2F2F2;
     	width: 770px;
     	position: relative;
     	margin: 20px 28px;
@@ -661,7 +726,7 @@
     	width: 78px;
     	height: 32px;
     	line-height: 32px;
-    	background: #D8D8D8;
+    	background: #FFFFFF;
     	text-align: center;
     	border-radius: 8px;
     	margin-right: 20px;
@@ -670,6 +735,34 @@
     .groupMember ul li .right .isSelect{
     	background: #FFAA67;
     	color: #FFFFFF;
+    }
+    .groupReward{
+    	position: absolute;
+	    left: 50%;
+	    top: 50%;
+	    z-index: 3;
+	    transform: translate(-50%,-50%);
+	    overflow: hidden;
+	    width: 964px;
+	    height: 365px;
+	    background: #FFFFFF;
+	    border-radius: 8px;
+	    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
+	    overflow: hidden;
+    }
+    .groupReward header{
+    	    height: 60px;
+		    background: #2196F3;
+		    font-size: 16px;
+		    color: #FFFFFF;
+		    font-weight: bold;
+    }
+    .groupReward header span{
+    	display: inline-block;
+    	width: 50%;
+    	height: 100%;
+    	line-height: 60px;
+    	text-align: center;
     }
     .groupReward .parse{
     	position: absolute;
@@ -685,173 +778,159 @@
 		font-size: 14px;
 		color: #FFAA67;
     }
-    .groupReward .cont{
-    	padding-top: 0;
-    	text-align: center;
-    	height: 436px;
-    	line-height: 400px;
+    .groupReward .close{
+    	position: absolute;
+	    bottom: 15px;
+	    left: 15px;
+	    cursor: pointer;
     }
-	.groupReward .cont li{
-		    float: left;
-		    position: relative;
-		    margin: 10px 20px;
-		    display: inline-block;
-		    height: 178px;	
+    .groupReward .cont{
+    
+    }
+	.groupReward>.cont>ul{
+		box-sizing: border-box;
+		overflow: auto;
+    	padding-top: 13px;
+    	padding-left: 49px;
+		float: left;
+		width: 481px;
+		height: 304px;
 	}
-	.groupReward .cont li .item{
-		    width: 101px;
-		    height: 130px;
-		    background: #FFFFFF;
-		    text-align: center;
-		    border-radius: 8px;
-		    box-shadow: 0 4px 12px 0 rgba(0,0,0,0.50);
+	.groupReward>.cont>.left{
+		border-right: 1px solid #4A4A4A;
 	}
-	.groupReward .cont li .item .groupNum{
+	.groupReward>.cont>ul>li{
+		margin: 0 20px 20px 0;
+		display: inline-block;
+		height: 80px;
+	}
+	.groupReward>.cont>ul>li .item{
+		position: relative;
+		width: 183px;
+		height: 80px;
+		background: #F2F2F2;
+	}
+	.groupReward>.cont>ul>li  .item .groupNum{
+		float: left;
 		width: 45px;
-		height: 45px;
-		margin-left: 28px;
-		line-height: 45px;
+		height: 60px;
+		text-align: center;
+		margin-left: 10px;
+		line-height: 60px;
 		background: #2196F3;
 		color: #FFFFFF;
 		border-radius: 0 0 8px 8px;
 	}
-	.groupReward .cont li .item .answer{
-		margin-top: 12px;
-		width: 100%;
-		text-align: center;
-		height: 30px;
-		line-height: 30px;
-		font-size: 16px;
-		font-weight: bold;
-		color: #FF5A5F;
-	}
 	.groupReward .cont li .item .name{
-		width: 100%;
-		text-align: center;
-		height: 30px;
-		line-height: 30px;
-		font-weight: bold;
-		margin-top: 5px;
-		font-size: 16px;
-		color: #4A4A4A;
-	}
-	.groupReward .cont li .add{
-		cursor: pointer;
 		position: absolute;
-		left: 8px;
-		bottom: 4px;
-		height: 32px;
-		font-size: 28px;
-		width: 32px;
-		border: 2px solid #35AA66;
-		border-radius: 50%;
-		color: #35AA66;
+   		top: 21px;
+		margin: 0px 0 0 75px;
+		width: 78px;
 		text-align: center;
+		height: 32px;
 		line-height: 32px;
+		font-size: 14px;
+		color: #4A4A4A;
+		border-radius: 8px;
+		background: #FFFFFF;
 	}
-	.groupReward .cont li .dec{
+	.groupRank{
+		height: 100%;
+	}
+	.groupRank .tip{
 		position: absolute;
-		right: 8px;
-		bottom: 4px;
-		cursor: pointer;
-		height: 32px;
-		font-size: 28px;
-		width: 32px;
-		border: 2px solid #FF5A5F;
-		border-radius: 50%;
-		color: #FF5A5F;
+		left: 50%;
+		bottom: 70px;
+		transform: translateX(-50%);
+		color: #a4a4a4;
 		text-align: center;
-		line-height: 29px;
 	}
-	.groupReward .cont li .item .addTip{
-		float: left;
-		margin-top: -85px;
-	    width: 100%;
+	.groupRank header{
+	    height: 60px;
+	    background: #2196F3;
+	    font-size: 16px;
+	    color: #FFFFFF;
 	    text-align: center;
-	    opacity: 0;
-	    height: 30px;
-	    line-height: 30px;
-	    font-size: 20px;
+	    line-height: 60px;
 	    font-weight: bold;
-	    color:#35AA66;
 	}
-	.groupReward .cont li .item .decTip{
-		float: left;
-		margin-top: -85px;
-	    width: 100%;
-	    text-align: center;
-	    opacity: 0;
-	    height: 30px;
-	    line-height: 30px;
-	    font-size: 20px;
-	    font-weight: bold;
-	    color:#FF5A5F;
+	.groupRank .cont{
+		text-align: center;
 	}
-	.groupReward  .tips{
-		position: absolute;
-		bottom: 30px;
-		left: 0;
+	.groupRank .cont li{
+		display: inline-block;
+		width: 160px;
+		height: 211px;
+		margin: 50px 29px 0;
+		box-shadow: 0 4px 12px 0 rgba(0,0,0,0.50);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+	.groupRank .cont li .item{
+		position: relative;
 		width: 100%;
-		text-align: center;
-		height: 28px;
-		line-height: 28px;
+		height: 100%;
+		font-size: 16px;
+		font-weight: bold;
 	}
-	.groupReward  .tips span{
-		display: inline-block;
-		height: 16px;
-		width: 16px;
-		border: 2px solid #35AA66;
-		border-radius: 50%;
-		color: #35AA66;
+	.groupRank .cont li .item .groupNum{
+		margin: 0 auto;
+		width: 74px;
+		height: 64px;
+		box-sizing: border-box;
+		padding-top: 10px;
+		background: #2496f1;
+		border-radius: 0 0 8px 8px;
+		color: #FFFFFF;
+		font-size: 16px;
 		text-align: center;
-		line-height: 16px;
 	}
-	.groupReward  .tips span:nth-of-type(2){
+	.groupRank .cont li .item .groupNum span{
+		width: 50px;
+		height: 24px;
 		display: inline-block;
-		height: 16px;
-		width: 16px;
-		border: 2px solid #FF5A5F;
-		border-radius: 50%;
-		color: #FF5A5F;
+		border-bottom: 1px solid #FFFFFF;
 		text-align: center;
-		line-height: 14px;
 	}
 	.groupRank .cont li .item .score{
-		margin: 10px auto;
-		width: 60px;
-		height: 60px;
+		position: absolute;
+		top:38px;
+		left: 64px;
+		color: #FFFFFF;
 		text-align: center;
-		/* height: 30px; */
-		background: url(../img/star.png) no-repeat;
-		line-height: 63px;
-		font-size: 16px;
-		font-weight: bold;
-		color: #000;
 	}
-	
-	.zoomOutUp {
-	  animation: zoomOutUp 1.5s;
-	}  
-	@keyframes zoomOutUp {
-	  0% {
-	    opacity: 1;
-	  }	  
-	  50% {
-	    opacity: 1;
-	  }
-	  60% {
-	    opacity: 1;
-	    transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
-	    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-	  }
-	  100% {
-	    opacity: 0;
-	    transform: scale3d(.1, .1, .1) translate3d(0, -2000px, 0);
-	    transform-origin: center bottom;
-	    animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
-	  }
+	.groupRank .cont li .item .answer{
+		margin-top: 40px;
+		text-align: center;
+		color: #f8898f;
 	}
-	
+	.groupRank .cont li .item .name{
+		margin-top: 38px;
+		text-align: center;
+		color: #4A4A4A;
+	}
+	.randomPanel{
+		width: 100%;
+    	text-align: center;
+    	line-height: 60px;
+	}
+	.randomPanel div{
+		display: inline-block;
+		margin: 0 50px;
+		width: 100px;
+		height: 32px;
+		color: #4A90E2;
+		cursor: pointer;
+		border-radius: 16px;
+		border: 2px solid #4A90E2;
+    	text-align: center;
+    	line-height: 32px;
+    	font-weight: bold;
+	}
+	.randomPanel div:nth-of-type(2){
+		color: #FFAA67;
+		border: 2px solid #FFAA67;
+	}
 	.random{
 		width:420px;
 	}
@@ -896,19 +975,36 @@
 		color: white;
 		background: #FFAA67;
 	}
-	.random_result{}
-	.random_result .cont{
-		height: 400px;
+	.random_result{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+	.random_result header{
+		margin-top: 90px;
 		text-align: center;
-		line-height: 400px;
+		font-size: 24px;
+		color: #3C3C3C;
+	}
+	.random_result .cont{
+		position: relative;
+		width: 572px;
+		height: 286px;
+		margin: 90px auto;
+		/*margin: 0 auto;*/
+		text-align: center;
+		line-height: 286px;
+		background: url(../img/random_bg.png) no-repeat;
 	}
 	.random_result .cont .stuName{
 		width: 100%;
 		height: 100%;
 		text-align: center;
 		font-size: 36px;
-		color: #4A4A4A;
-		line-height: 350px;
+		color: #3C3C3C;
+		line-height: 286px;
 		font-weight: bold;
 	}
 	.random_result .cont .randomResult{
@@ -920,32 +1016,45 @@
 		font-weight: bold;
 	}
 	.random_result .cont .randomResult .name{
+		padding-top: 50px;
 		height: 35px;
 		line-height: 35px;
-		margin-top: 80px;
-		margin-bottom: 20px;
+		margin-bottom: 30px;
 	}
 	.random_result .cont .randomResult .answer{
-		/* margin-bottom: 35px; */
 		width: 249px;
 		height: 60px;
-		/* display: inline-block; */
 		line-height: 60px;
-		color: white;
-		background: #2196F3;
-		border-radius: 8px;
+		font-size: 36px;
+		color: #FA8C13;
 		margin: 0 auto 35px;
 	}
 	.random_result .cont .randomResult .reward{
-		height: 60px;
+		position: absolute;
+	    left: 50%;
+	    transform: translateX(-50%);
+	    bottom: -83px;
+	    padding-left: 46px;
+	    height: 60px;
+	    width: 470px;
+	    box-sizing: border-box;
+	    line-height: 60px;
+	    overflow: hidden;
+	    text-align: left;
+	}
+	.random_result .cont .randomResult .reward span{
+		position: absolute;
+		left: 0;
+		height: 100%;
 		line-height: 60px;
-		overflow: hidden;
-		text-align: center;
+		font-size: 14px;
+		color: #3C3C3C;
+		display: inline-block;
 	}
 	.random_result .cont .randomResult .reward li{
 		display: inline-block;
-		width: 60px;
-		height: 60px;
+		width: 58px;
+		height: 56px;
 		background: url(../img/star_grey.png) no-repeat;
 		margin: 0 12px;
 		cursor: pointer;

@@ -434,10 +434,10 @@
         },
         panelCloseFn:function(){
         	this.allInfor = false;
-        	this.allCount = false;
+//      	this.allCount = false;
         	this.allParse = false;
         	this.isStopAnswer = false;
-        	this.Rank = false;
+//      	this.Rank = false;
         	this.randomRusult = false;
         	this.randomStuName = false;
 //      	this.inVie = false;
@@ -489,6 +489,7 @@
         	}
         },
         isRankFn:function(){
+        	this.panelCloseFn();
         	this.Rank = !this.Rank;
 //      	this.groupStart = false;
 			this.selectData.sort(function(a,b){

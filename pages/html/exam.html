@@ -291,7 +291,7 @@
         	<!--多题控件面板-->
         	<div class="allAnswer mulPanel" :class="{'isMulFold':isFold}" v-show="isMulPanel">
         		<div class="tag">设置答题时间</div>
-        		<input type="text" v-model="time" placeholder="00:00"  onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>
+        		<input type="text" v-model="time" placeholder="00"  onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>
             	<!--<div class="startMul" v-show="!isFold" @click="mulStartFn()">开始答题</div> 
             	<div class="line" v-show="!isFold"></div>
             	<div class="set" v-show="!isFold">

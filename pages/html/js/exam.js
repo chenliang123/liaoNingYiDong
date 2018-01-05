@@ -929,7 +929,8 @@ var vm = new Vue({
         	}        	
         },
         mulNextFn:function(){
-        	if(this.current >= this.mulPreFn){
+//      	if(this.current >= this.mulPreFn){
+        	if(this.current >= this.tiNumAll){
         		this.current = this.tiNumAll;
         	}else{
         		this.current++;

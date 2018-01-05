@@ -16,8 +16,8 @@
 <body>
     <div id="app">
         <div class="wrap" v-cloak>
-            <header v-show="!randomRusult && !isGroup && !randomAnswer && !isVie"> <div class="answerTime" v-show="isMulAnswer">作答时间:{{leftTime}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本题已答：0/38</div> {{tiNum}}/{{tiNumAll}}</header>
-            <section class="cont" v-show="!isGroup && !randomRusult && !randomAnswer && !isVie">
+            <header v-show="!randomRusult && !isGroup && !randomAnswer && !isVie && !allCount"> <div class="answerTime" v-show="isMulAnswer">作答时间:{{leftTime}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本题已答：0/38</div> {{tiNum}}/{{tiNumAll}}</header>
+            <section class="cont" v-show="!isGroup && !randomRusult && !randomAnswer && !isVie && !allCount">
             	<div v-html="topicCurrent.body"></div>
             </section>
             <footer>
@@ -44,7 +44,7 @@
                 		<h5>抢答</h5>
                 	</div>
                 </div>
-                <div class="progress" v-show="isAll">
+                <div class="progress" v-show="isAll && !allCount">
                 	<div class="look" @click="allInforFn()">
                 		<img src="img/look.png" alt="" />
                 		<span>作答进度({{answerStuNum}}/{{stuListNum}})</span>
@@ -68,7 +68,7 @@
                 	<div @click="startRandom()">继续点名</div>
                 	<div @click="randomParseFn()">查看解析</div>
                 </div>
-                <div class="randomPanel" v-show="isVied">
+                <div class="randomPanel" v-show="isVied && !allParse">
                 	<div @click="startVieFn()">继续抢答</div>
                 	<div @click="randomParseFn()">查看解析</div>
                 </div>
@@ -78,33 +78,9 @@
                 		<h5>开始答题</h5>
                 	</div>
                 </div>
-                <!--<ul v-show="!isFold">
-                    <li :class="{'checkSingle':isShowTip}" @click="showTipsFn()"></li>
-                    <li :class="{'checkQuize':isQuize}" @click="showQuizeFn()"></li>
-                </ul>
-                <div class="fold" :class="{'foldActive':isFold}" @click="foldFn()"></div>
-                <div class="tips" v-show="!isFold && isShowTip">
-                    <ul>
-                        <li @click="allAnswerFn()">全体作答</li>
-                        <li @click="groupAnswerFn()">小组作答 </li>
-                        <li @click="RandomFn()">随机点名答题</li>
-                        <li @click="viaFn()">抢答题</li>
-                    </ul>
-                    <div class="shape"></div>
-                </div>-->
+            	<div class="parseBtn" v-show="allCount && !allParse" @click="allParseFn()">查看解析</div>
+            	<div class="parseBtn" v-show="Rank && !allParse" @click="allParseFn()">查看解析</div>
             </footer>
-            <!--全答控制面板-->
-            <!--<div class="allAnswer" :class="{'isAllAnswerFold':isFold}" v-show="isAll">
-            	<img src="img/refresh.png" alt="" v-show="!isFold" @click="homeFn()" />
-            	<div class="infor" :class="{'inforActive':allInfor}" v-show="!isFold" @click="allInforFn()">答题详情</div>
-            	<div class="count" :class="{'isAllCountActive':isAllCount}" v-show="!isFold" @click="isAllCountFn()">作答统计</div>
-            	<div class="line" v-show="!isFold"></div>
-            	<div class="result" v-show="!isFold">
-            		<div>已答：{{answerStuNum}}人</div>
-            		<div>未答：{{stuListNum - answerStuNum}}人</div>
-            	</div>
-            	<div class="fold" :class="{'foldActive':isFold}" @click="foldFn()"></div>
-            </div>-->
             <!--全答详情页面-->
             <div class="all_infor" v-show="allInfor">
             	<header>
@@ -174,10 +150,10 @@
             				<div>错误人数：{{dacuo.length}}人</div>
             				<div>未答人数：{{noAnswerList.length}}人</div>
             			</div>
-            			<div class="btn" @click="allParseFn()">查看解析</div>
+            			<!--<div class="btn" @click="allParseFn()">查看解析</div>-->
             		</div>
             	</section>
-            	<span class="close" @click="panelCloseFn()">X</span>
+            	<span class="title">作答统计</span>
             </div>
             <!--全答答案解析页面-->
             <div class="allParse" v-show="allParse">
@@ -185,23 +161,6 @@
             	<div class="cont" v-html="topicCurrent.analysis"></div>
             	<div class="close" @click="panelCloseFn()">X</div>           	
             </div>
-            <!--<div class="panel" v-show="!isAll && !isGroup && !Random && !isVie && !isMulPanel && !isMulAnswer">
-                <div class="close" @click="closeFn()">X</div>
-                <div class="pre" @click="select(-1)"><</div>
-                <div class="next" @click="select(1)">></div>
-            </div>-->
-            <!--小组答题控制页面-->
-            <!--<div class="groupAnswer" :class="{'isAllgroupFold':isFold}" v-show="isGroup">
-            	<img src="img/refresh.png" alt="" v-show="!isFold" @click="homeFn()" />
-            	<div class="start" :class="{'unableActive':!enableStart,'startActive':groupStart,'stopAnswerActive':isStopAnswer}" v-show="!isFold" @click="groupStartFn()"></div>
-            	<div class="Rank" :class="{'isGroupCountActive':Rank}" v-show="!isFold" @click="isRankFn()">排行榜</div>
-            	<div class="line" v-show="!isFold"></div>
-            	<div class="result" v-show="!isFold">
-            		<div>已答：{{answerStuLists.length}}组</div>
-            		<div>未答：{{selectData.length - answerStuLists.length}}组</div>
-            	</div>
-            	<div class="fold" :class="{'foldActive':isFold}" @click="foldFn()"></div>
-            </div>-->
             <!--小组人名列表页面-->
             <div class="groupMember" v-show="isGroup && !groupStart && !Rank">
             	<header>请依次点击学生后开始答题</header>
@@ -217,54 +176,138 @@
             	</ul>
             </div>
             <!--小组奖励页面-->
-            <div class="allParse groupReward" v-show="isStopAnswer && !allParse">
-            	<header>正确答案:ABC</header>
-            	<ul class="cont">
+            <div class="groupReward" v-show="isStopAnswer && !allParse">
+            	<header><span class="left">已答:2组</span><span class="right">未答:3组</span></header>
+            	<div class="cont">
+            		<ul class="left">
+            			<li>
+            				<div class="item">
+	            				<div class="groupNum">1组</div>
+	            				<div class="name">张小白</div>
+            				</div>
+            			</li>
+            			<li>
+            				<div class="item">
+	            				<div class="groupNum">1组</div>
+	            				<div class="name">张小白</div>
+            				</div>
+            			</li>
+            			<li>
+            				<div class="item">
+	            				<div class="groupNum">1组</div>
+	            				<div class="name">张小白</div>
+            				</div>
+            			</li>
+            			<li>
+            				<div class="item">
+	            				<div class="groupNum">1组</div>
+	            				<div class="name">张小白</div>
+            				</div>
+            			</li>
+            		</ul>
+            		<ul class="right">
+            			<li>
+            				<div class="item">
+	            				<div class="groupNum">1组</div>
+	            				<div class="name">张小白</div>
+            				</div>
+            			</li>
+            		</ul>
+            	</div>
+            	<!--<ul class="cont">
             		<li v-for="item in  selectData">
             			<div class="item">
             				<div class="groupNum">{{item.groupNum}}组</div>
             				<div class="answer">{{item.tanswer}}</div>
             				<div class="name">{{item.name}}</div>
-            				<div class="addTip" :class="{'zoomOutUp':item.isShowAddTip}">+1分</div>
-            				<div class="decTip" :class="{'zoomOutUp':item.isShowDecTip}">-1分</div>
             			</div>
-            			<div class="add" @click="showTipFn(item,1)">+</div>
-            			<div class="dec" @click="showTipFn(item,-1)">-</div>
-            		</li>
+            		</li>-->
             		<!--<li>
             			<div class="item">
             				<div class="groupNum">1组</div>
             				<div class="answer">ABC</div>
             				<div class="name">张小白</div>
-            				<div class="addTip" :class="{'zoomOutUp':isShowAddTip}">+1分</div>
-            				<div class="decTip" :class="{'zoomOutUp':isShowDecTip}">-1分</div>
             			</div>
-            			<div class="add" @click="showTipFn(1)">+</div>
-            			<div class="dec" @click="showTipFn(-1)">-</div>
             		</li>-->
-            	</ul>
-            	<div class="tips">点击<span>+</span>加一分     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击<span>-</span>减一分</div>
+            	<!--</ul>-->
             	<div class="close" @click="panelCloseFn()">X</div>
-            	<div class="parse" @click="allParseFn()">查看解析</div>
             </div>
             <!--小组排行榜页面-->
-            <div class="allParse groupReward groupRank" v-show="Rank">
-            	<header>排行榜</header>
+            <div class="groupRank" v-show="Rank">
+            	<header>正确答案:ABD</header>
             	<ul class="cont">
-            		<li v-for="item in  selectData">
+            		<!--<li v-for="item in  selectData">
             			<div class="item">
             				<div class="groupNum">{{item.groupNum}}组</div>
             				<div class="score">{{item.score}}</div>
             			</div>
-            		</li>
-            		<!--<li>
-            			<div class="item">
-            				<div class="groupNum">1组</div>
-            				<div class="score">13</div>
-            			</div>
             		</li>-->
+            		<li>
+            			<div class="item">
+            				<div class="groupNum"><span>1组</span></div>
+            				<div class="score">13分</div>
+            				<div class="answer">AB</div>
+            				<div class="name">张小白</div>
+            			</div>
+            		</li>
+            		<li>
+            			<div class="item">
+            				<div class="groupNum"><span>1组</span></div>
+            				<div class="score">13分</div>
+            				<div class="answer">AB</div>
+            				<div class="name">张小白</div>
+            			</div>
+            		</li>
+            		<li>
+            			<div class="item">
+            				<div class="groupNum"><span>1组</span></div>
+            				<div class="score">13分</div>
+            				<div class="answer">AB</div>
+            				<div class="name">张小白</div>
+            			</div>
+            		</li>
+            		<li>
+            			<div class="item">
+            				<div class="groupNum"><span>1组</span></div>
+            				<div class="score">13分</div>
+            				<div class="answer">AB</div>
+            				<div class="name">张小白</div>
+            			</div>
+            		</li>
+            		<li>
+            			<div class="item">
+            				<div class="groupNum"><span>1组</span></div>
+            				<div class="score">13分</div>
+            				<div class="answer">AB</div>
+            				<div class="name">张小白</div>
+            			</div>
+            		</li>
+            		<li>
+            			<div class="item">
+            				<div class="groupNum"><span>1组</span></div>
+            				<div class="score">13分</div>
+            				<div class="answer">AB</div>
+            				<div class="name">张小白</div>
+            			</div>
+            		</li>
+            		<li>
+            			<div class="item">
+            				<div class="groupNum"><span>1组</span></div>
+            				<div class="score">13分</div>
+            				<div class="answer">AB</div>
+            				<div class="name">张小白</div>
+            			</div>
+            		</li>
+            		<li>
+            			<div class="item">
+            				<div class="groupNum"><span>1组</span></div>
+            				<div class="score">13分</div>
+            				<div class="answer">AB</div>
+            				<div class="name">张小白</div>
+            			</div>
+            		</li>
             	</ul>
-            	<div class="close" @click="panelCloseFn()">X</div>
+            	<div class="tip">点击小组加分</div>
             </div>
         	<!--随机点名控制panel-->
         	<!--<div class="groupAnswer random" :class="{'isRandomFold':isFold}" v-show="Random">
