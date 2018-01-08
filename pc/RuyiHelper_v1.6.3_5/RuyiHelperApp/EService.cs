@@ -21,6 +21,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace RueHelper
 {
@@ -3526,6 +3528,57 @@ namespace RueHelper
 
         //------------------------辽宁移动版-------------------------
         #region  [v1.6.3]辽宁移动版
+        //------------------------验证登录成功--------------------
+        public string loginSuccess(string clientid , string uid , string time , string sign)
+        {
+            if (Form1.formWeb == null)
+            {
+                Form1.formWeb = new FormWebBrowser();
+                Form1.formWeb.Hide();
+            }
+            else
+            {
+                Form1.formWeb.Hide();
+            }
+            string strData = Common.verifyTheTeacher(uid);
+            if (strData.Length > 0)
+            {
+                System.Web.Script.Serialization.JavaScriptSerializer json = new System.Web.Script.Serialization.JavaScriptSerializer();
+                JObject jo = (JObject)JsonConvert.DeserializeObject(strData);
+                string teacherName = jo["teacherdata"]["name"].ToString();
+
+                string name = teacherName;
+                string pwd = "123456";
+                foreach (User u in Global.g_TeacherArray)
+                {
+                    if (name == u.name || name == "admin")
+                    {
+                        if (pwd == u.pwd || pwd == "123456")
+                        {
+                            int courseid = u.courseid;
+                            Dictionary<String, String> pList = new Dictionary<String, String>();
+                            pList.Add("courseid", "" + courseid);
+                            Httpd.handleLogin(pList, "");
+
+                            //TODO:WQ 开始上课;
+                            EService.ShowSelectTeacher(false, 1);
+
+                            //调用控制栏
+                            Form1.ShowController(true);
+
+                            break;
+                        }
+                        else
+                        {
+                            //密码错误
+                        }
+                    }
+                    
+                }
+                Console.WriteLine(teacherName);
+            }
+            return "seccuss";
+        }
         public static void ShowSelectTeacher(Boolean show, int type)
         {
             if (show)

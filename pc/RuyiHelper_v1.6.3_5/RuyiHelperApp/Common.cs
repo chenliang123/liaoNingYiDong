@@ -918,6 +918,24 @@ namespace RueHelper
             }
         }
 
-
+        // 根据移动登录后返回的uid获取老师信息
+        public static string verifyTheTeacher(string uid)
+        {
+            string url = "http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=verifyTheTeacher&uid=" + uid;
+            string ret = HTTPReq.HttpGet(url);
+            if (ret.Length > 0)
+            {
+                JObject jo = (JObject)JsonConvert.DeserializeObject(ret);
+                string _data = jo["data"].ToString();
+                string _ret = jo["ret"].ToString();
+                string _msg = jo["msg"].ToString();
+                return _data;
+            }
+            else
+            {
+                return "";
+            }
+        }
+    
     }
 }

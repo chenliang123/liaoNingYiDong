@@ -36,7 +36,11 @@ namespace RueHelper
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             //TODO:WQ 开始上课
-            EService.ShowSelectTeacher(true,1);
+            //EService.ShowSelectTeacher(true,1);
+            string data = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string url = "http://221.179.197.232/Sso/login?appid=ca1b0dbcf9&callback_uri=http://127.0.0.1:8986/loginSuccess&clientid=" + data;
+            Form1.formWeb = new FormWebBrowser();
+            Form1.formWeb.navigate(url);
             this.Hide();
         }
 

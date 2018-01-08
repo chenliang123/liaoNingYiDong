@@ -521,5 +521,12 @@ namespace RueHelper
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
         string Exit(string accessValue, string chapter);
         #endregion
+
+        #region 辽宁移动登录成功
+        [OperationContract]
+        [WebInvoke(Method = "GET")]
+        string loginSuccess(string clientid, string uid, string time, string sign);
+        #endregion
+    
     }
 }
