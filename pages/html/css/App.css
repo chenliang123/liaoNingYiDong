@@ -14,10 +14,13 @@
         color:#2196F3;
     }
     .wrap>.cont{
-    	width: 944px;
-    	height: 383px;
-    	margin: 50px 55px;
-    	font-size: 18px;
+    	width: 700px;
+	    /* height: 383px; */
+	    padding: 20px;
+	    border: 2px solid #e4e3e3;
+	    margin: 50px auto;
+	    font-size: 18px;
+	    border-radius: 8px;
     }
     footer {
         position:absolute;

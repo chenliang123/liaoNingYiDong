@@ -7,8 +7,10 @@
     <style type="text/css">
     	[v-cloak] {
 		  display: none;
-		}
-		.cont>div>p>span{font-size: 18px !important;}
+		}		
+		.cont>div{line-height: 38px !important;}
+		.cont>div>p>span{font-size: 18px !important;line-height: 38px !important;}
+		
     </style>
     <link href="css/reset.css" rel="stylesheet" />
     <link href="css/exam.css" rel="stylesheet" />
@@ -292,6 +294,7 @@
         	<div class="allAnswer mulPanel" :class="{'isMulFold':isFold}" v-show="isMulPanel">
         		<div class="tag">设置答题时间</div>
         		<input type="text" v-model="time" placeholder="00"  onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>
+            	<div class="log">分钟</div>
             	<!--<div class="startMul" v-show="!isFold" @click="mulStartFn()">开始答题</div> 
             	<div class="line" v-show="!isFold"></div>
             	<div class="set" v-show="!isFold">

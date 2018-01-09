@@ -38,12 +38,15 @@
     .wrap header .num span{
     	font-size: 28px;
     }
-    .wrap>.cont{
-    	width: 944px;
-    	height: 383px;
-    	margin: 50px 55px;
-    	font-size: 18px;
-    }
+    .wrap>.cont {
+		    width: 700px;
+		    /* height: 383px; */
+		    padding: 20px;
+		    border: 2px solid #e4e3e3;
+		    margin: 50px auto;
+		    font-size: 18px;
+		    border-radius: 8px;
+	}
     footer {
         position:absolute;
         left: 0;
@@ -1057,7 +1060,7 @@ width: 104%;
 		width: 584px;
 		height: 162px;
 		background: url(../img/set_time.png) no-repeat;
-	}
+	}	
 	.mulPanel .tag{
 		position: absolute;
 		top:-15px;
@@ -1068,15 +1071,29 @@ width: 104%;
 	}
 	.mulPanel input{
 		position: absolute;
-	    top: 85px;
-	    right: 123px;
-    	width: 92px;
-		height: 48px;
-		border: 2px solid #FFFFFF;
-		text-align: center;
-		font-size: 36px;
-		color: #3C3C3C;
-		font-weight: bolder;
+	    top: 91px;
+	    right: 153px;
+	    width: 59px;
+	    height: 48px;
+	    border: 2px solid #FFFFFF;
+	    text-align: center;
+	    font-size: 36px;
+	    color: #3C3C3C;
+	    font-weight: bolder;
+	    border: 1px solid #2b4eec;
+	}
+	.mulPanel .log{
+		position: absolute;
+	    top: 91px;
+	    right: 72px;
+	    width: 92px;
+	    height: 48px;
+	    /* border: 2px solid #FFFFFF; */
+	    text-align: center;
+	    line-height: 51px;
+	    font-size: 28px;
+	    color: #000;
+	    font-weight: bolder;
 	}
 	.isMulFold{
 		width: 92px;
