@@ -97,7 +97,7 @@ namespace RueHelper
         }
         public int extiAnswer()
         {
-            return AnswerCard.AnswerStop();
+            return 12;
         }
         public void getScreen()
         {
@@ -117,7 +117,7 @@ namespace RueHelper
         {
             return Global.AnswerStu;
         }
-        public int recieveData(string answer, int type)
+        public int recieveData(string answer, string type)
         {
             int temp = 0;
             if (server == null)
@@ -128,18 +128,9 @@ namespace RueHelper
             string classid = Global.getClassID().ToString();
             string lessonid = Global.getLessonID().ToString();
             server.HandonOver("-1", "");
-            if (type == 0)
-            {
-                temp = server.SingleProjectiveInPPT(courseid, classid, lessonid);
-            }
-            else if (type == 1)
-            {
-                temp = server.ProjectiveInPPT(courseid, classid, lessonid);
-            }
-            else if (type == 2)
-            {
-                temp = server.JudgeProjectiveInPPT(courseid, classid, lessonid);
-            }
+           
+            server.SingleProjectiveInPPT(courseid, classid, lessonid);
+            
             server.SetAnswer(answer);
             return temp;
         }

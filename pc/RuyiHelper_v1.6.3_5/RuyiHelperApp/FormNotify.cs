@@ -54,29 +54,29 @@ namespace RueHelper
             //tm_hide.Tick += new EventHandler(t_Hide);
             //tm_hide.Start();
             
-            QRCodeHandler qr = new QRCodeHandler();
-            string path = Global.startPath;    //文件目录
-            string qrString = "ID:" + AnswerCard.Reader + ";IP:" + Form1.GetRandomIP();                         //二维码字符串
-            string logoFilePath = path + "myLogo.jpg";                                    //Logo路径50*50
-            string filePath = path + "myCode.jpg";                                        //二维码文件名
-            qr.CreateQRCode(qrString, "Byte", 5, 0, "H", filePath, true, logoFilePath);   //生成
+            //QRCodeHandler qr = new QRCodeHandler();
+            //string path = Global.startPath;    //文件目录
+            //string qrString = "ID:" + AnswerCard.Reader + ";IP:" + Form1.GetRandomIP();                         //二维码字符串
+            //string logoFilePath = path + "myLogo.jpg";                                    //Logo路径50*50
+            //string filePath = path + "myCode.jpg";                                        //二维码文件名
+            //qr.CreateQRCode(qrString, "Byte", 5, 0, "H", filePath, true, logoFilePath);   //生成
 
 
-            if (AnswerCard.Reader != 0)
-            {
-                string picPath = Global.startPath;    //文件目录
-                string picSrc = picPath + "myCode.jpg";                                        //二维码文件名
-                setImgUrl(picSrc);
-            }
+            //if (AnswerCard.Reader != 0)
+            //{
+            //    string picPath = Global.startPath;    //文件目录
+            //    string picSrc = picPath + "myCode.jpg";                                        //二维码文件名
+            //    setImgUrl(picSrc);
+            //}
             
         }
 
-        public bool setImgUrl(string url)
-        {
-            bool ret = true;
-            pictureBox.BackgroundImage = Image.FromFile(url);
-            return ret;
-        }
+        //public bool setImgUrl(string url)
+        //{
+        //    bool ret = true;
+        //    pictureBox.BackgroundImage = Image.FromFile(url);
+        //    return ret;
+        //}
 
         public void hideImg()
         {

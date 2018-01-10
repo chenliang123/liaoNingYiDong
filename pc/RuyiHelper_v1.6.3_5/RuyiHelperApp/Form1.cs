@@ -72,20 +72,13 @@ namespace RueHelper
 
             InitializeComponent();
             //启动初始化接收机
-            if (answer_card == null)
-            {
-                answer_card = new AnswerCard();
-                answer_card.Message();
-                string date = DateTime.Now.ToString("yyyyMMdd");
-                int schoolID = Global.getSchoolID();
-                Global.g_roommsg = Common.getClassroomCourseTable(schoolID, 101, "20170905");
-               //Common.getClassroomCourseTable(93,23,"");
-            }
-            else
-            {
-                answer_card.Message();
-            }
-            Log.Info("F1_1 set notifyIcon");
+            
+            answer_card = new AnswerCard();
+            //answer_card.Message();
+            string date = DateTime.Now.ToString("yyyyMMdd");
+            int schoolID = Global.getSchoolID();
+            Global.g_roommsg = Common.getClassroomCourseTable(schoolID, 101, "20170905");
+          
 
             //show in taskbar
             {
@@ -489,47 +482,47 @@ namespace RueHelper
                 }
 
                 //check答题卡
-                {
-                    if (AnswerCard.Card_Test() == 1)
-                    {
-                        bOK_HD = true;
-                        if (fNotify != null)
-                        {
-                            fNotify.showImg();
-                            fNotify.setImgUrl(Global.startPath + "myCode.jpg");
-                        }
-                        else
-                        {
-                            fNotify = new FormNotify("", "", 10);
-                        }                        
-                    }
-                    else
-                    {
-                        if (AnswerCard.Card_Test() == 1)
-                        {
-                            bOK_HD = true;
-                            if (fNotify != null)
-                            {
-                                fNotify.showImg();
-                            }
-                            else
-                            {
-                                fNotify = new FormNotify("", "", 10);
-                            }
-                        }
-                        else
-                        {                           
-                            if (fNotify != null)
-                            {
-                                fNotify.hideImg();
-                            }
-                            else
-                            {
-                                fNotify = new FormNotify("", "", 10);
-                            }
-                        }
-                    }
-                }
+                //{
+                //    if (AnswerCard.Card_Test() == 1)
+                //    {
+                //        bOK_HD = true;
+                //        if (fNotify != null)
+                //        {
+                //            fNotify.showImg();
+                //            fNotify.setImgUrl(Global.startPath + "myCode.jpg");
+                //        }
+                //        else
+                //        {
+                //            fNotify = new FormNotify("", "", 10);
+                //        }                        
+                //    }
+                //    else
+                //    {
+                //        if (AnswerCard.Card_Test() == 1)
+                //        {
+                //            bOK_HD = true;
+                //            if (fNotify != null)
+                //            {
+                //                fNotify.showImg();
+                //            }
+                //            else
+                //            {
+                //                fNotify = new FormNotify("", "", 10);
+                //            }
+                //        }
+                //        else
+                //        {                           
+                //            if (fNotify != null)
+                //            {
+                //                fNotify.hideImg();
+                //            }
+                //            else
+                //            {
+                //                fNotify = new FormNotify("", "", 10);
+                //            }
+                //        }
+                //    }
+                //}
                 int code = 0;
                 
                 int Sec = 3 * 1000;

@@ -899,6 +899,9 @@
 		text-align: center;
 		color: #f8898f;
 	}
+	.groupRank .cont li .item .noAnswer:after{
+		content: "无";
+	}
 	.groupRank .cont li .item .name{
 		margin-top: 38px;
 		text-align: center;
@@ -999,7 +1002,7 @@
 		text-align: center;
 		font-size: 36px;
 		color: #3C3C3C;
-		line-height: 286px;
+		line-height: 286px !important;
 		font-weight: bold;
 	}
 	.random_result .cont .randomResult{

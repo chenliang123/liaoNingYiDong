@@ -671,7 +671,7 @@ namespace RueHelper
                 fHandon.Hide();
                 Global.panelshow = 1;
 
-                AnswerCard.RaiseStart();   //启动答题卡举手
+              
 
             }
             else
@@ -679,7 +679,7 @@ namespace RueHelper
                 //“换个问题” pad界面并未返回，直接重新发起举手
                 HandonOver("-2", "");
                 //Handon(courseid, lessonid);
-                AnswerCard.RaiseStart();
+                //AnswerCard.RaiseStart();
             }
             Response resp = new Response(0, "Handon success", "");
             return resp;
@@ -875,7 +875,7 @@ namespace RueHelper
                 fStatistics.StopAnimate();
                 fStatistics.Close();
                 fStatistics = null;
-                AnswerCard.AnswerStart();   //启动答题卡答题
+                //AnswerCard.AnswerStart();   //启动答题卡答题
             }
             if (f2 == null)
             {
@@ -886,7 +886,7 @@ namespace RueHelper
                 f2 = new Form2(questionstr, rid, getClassInfo(), Global.getClassID() + "", lessonid);//xiti
                 f2.Show();
 
-                AnswerCard.AnswerStart();   //启动答题卡答题
+                //AnswerCard.AnswerStart();   //启动答题卡答题
             }
             else
             {
@@ -1018,7 +1018,7 @@ namespace RueHelper
                 fPPTPractise = new FormPPTPractise(getClassInfo(), classid, lessonid);
                 fPPTPractise.Hide();
 
-                temp = AnswerCard.AnswerStart();   //启动答题卡答题
+                //temp = AnswerCard.AnswerStart();   //启动答题卡答题
             }
             else
             {
@@ -1048,7 +1048,7 @@ namespace RueHelper
                 fPPTPractise = new FormPPTPractise(getClassInfo(), classid, lessonid);
                 fPPTPractise.Hide();
 
-                temp = AnswerCard.JudgeAnswerStart();   //启动答题卡答题
+                //temp = AnswerCard.JudgeAnswerStart();   //启动答题卡答题
             }
             else
             {
@@ -1064,23 +1064,21 @@ namespace RueHelper
         #region 截屏出题单题单选（FormPPTPractise）
         public int SingleProjectiveInPPT(string courseid, string classid, string lessonid)
         {
+            Global.AnswerStu = "";    //每次进入答题时清除下上次记录
             Global.panelshow = 1;
             int temp = 0;
             Log.Info("ProjectiveInPPT() courseid=" + courseid + ", classid=" + classid + ", lessonid=" + lessonid);
             if (fPPTPractise == null)
             {
                 Common.ClearXiti();
-
                 fPPTPractise = new FormPPTPractise(getClassInfo(), classid, lessonid);
                 fPPTPractise.Hide();
-
-                temp = AnswerCard.AnswerSingleStart();   //启动答题卡答题
+                //temp = AnswerCard.AnswerSingleStart();   //启动答题卡答题
             }
             else
             {
                 CloseProjective();
                 temp = SingleProjectiveInPPT(courseid, classid, lessonid);
-
                 //AnswerCard.AnswerSingleStart();
             }
             return temp;
@@ -1119,7 +1117,7 @@ namespace RueHelper
             {
                 fPPTPractise.t.Enabled = false;
                 fPPTPractise.SwitchView(2);
-                AnswerCard.AnswerStop();
+                //AnswerCard.AnswerStop();
             }
             return "success";
         }
@@ -1135,7 +1133,7 @@ namespace RueHelper
             {
                 fPPTPractise.t.Enabled = false;
                 fPPTPractise.SwitchView(3);
-                AnswerCard.AnswerStop();
+                //AnswerCard.AnswerStop();
             }
             return "success";
         }
@@ -1253,7 +1251,7 @@ namespace RueHelper
                 VoteClose();
             }
             fVote = new FormVote(options);
-            AnswerCard.AnswerSingleStart();   //启动答题卡答题
+            //AnswerCard.AnswerSingleStart();   //启动答题卡答题
             return "success";
         }
         public string VoteStop()
@@ -1271,7 +1269,7 @@ namespace RueHelper
                 fVote.t.Enabled = false;
                 fVote.Dispose();
                 fVote = null;
-                AnswerCard.AnswerStop();
+                //AnswerCard.AnswerStop();
             }
             return "success";
         }
@@ -1287,7 +1285,7 @@ namespace RueHelper
                 TwoMinuteClose();
             }
             fTMin = new FormTwoMinute(options);
-            AnswerCard.AnswerSingleStart();   //启动答题卡答题
+            //AnswerCard.AnswerSingleStart();   //启动答题卡答题
             return "success";
         }
         public string TwoMinuteStop()
@@ -1313,7 +1311,7 @@ namespace RueHelper
                 fTMin.t.Enabled = false;
                 fTMin.Dispose();
                 fTMin = null;
-                AnswerCard.AnswerStop();
+                //AnswerCard.AnswerStop();
             }
             return "success";
         }
@@ -1330,7 +1328,7 @@ namespace RueHelper
             Common.ClearHandon(false);//QDStart
             fQiangDa = new FormQiangDa();
 
-            AnswerCard.RaiseStart();
+            //AnswerCard.RaiseStart();
 
             return "success";
         }
@@ -1354,7 +1352,7 @@ namespace RueHelper
                 fQiangDa.Dispose();
                 fQiangDa = null;
 
-                AnswerCard.AnswerStop();
+                //AnswerCard.AnswerStop();
             }
             return "success";
         }

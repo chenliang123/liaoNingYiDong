@@ -3,3 +3,5 @@ D:\App\RuyiHelper_v1.6.2\RuyiMng\obj\Release\RueMng.csprojResolveAssemblyReferen
 D:\App\RuyiHelper_v1.6.2\RuyiMng\obj\Release\RueMng.exe
 D:\projects\RuyiHelper_v1.6.2\RuyiMng\obj\Release\RueMng.csprojResolveAssemblyReference.cache
 D:\projects\RuyiHelper_v1.6.2\RuyiMng\obj\Release\RueMng.exe
+D:\App\RuyiHelper_v1.6.3_5\RuyiMng\obj\Release\RueMng.csprojResolveAssemblyReference.cache
+D:\App\RuyiHelper_v1.6.3_5\RuyiMng\obj\Release\RueMng.exe

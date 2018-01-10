@@ -32,6 +32,8 @@
         Rank:false,
         groupData:[],
         selectData:[],
+        selectAnswered:[],
+        selectNoAnswer:[],
         isShowAddTip:false,
        	isShowDecTip:false,
        	Random:false,
@@ -247,7 +249,12 @@
 	        this.groupStart = false;
 	        this.isStopAnswer = false;
 	        this.Rank = false;
+	        this.selectData.filter(function(e){
+				e.tanswer = "";
+			});
 	        this.selectData = [];
+	        this.selectAnswered = [];
+	        this.selectNoAnswer = [];
 	        this.isShowAddTip = false;
 	       	this.isShowDecTip = false;
 	       	for(var item in this.groupData){
@@ -269,7 +276,6 @@
         	this.isMulCount = false;
         	this.groupStopCard = false;
         	this.answerStuLists = [];
-        	this.selectData = [];
         },
         closeFn: function () {
             window.external.hideWeb();
@@ -311,20 +317,18 @@
 //      	window.external.recieveData(this.topicCurrent.answer,this.topicCurrent.topicType);
         },
         allAnswerFn:function(){
-//      	var temp = window.external.recieveData(this.topicCurrent.answer,this.topicCurrent.type);
-//      	if(temp >= 0){
-	        	this.isAll = true;
-	        	clearInterval(this.askTimer);
-	            _this = this;
-	            this.askTimer = setInterval(function(){
-//	          	    _this.answerStuLists =window.external.getAnswerList();
-	          		if(_this.answerStuLists.length > 0){
-	          			_this.answerStuLists = _this.answerStuLists.split("|");
-	          		}
-	          		_this.answerStuNum = _this.answerStuLists.length;
-	          		_this.CountRightAnswer(_this.answerStuLists);
-	          	},1000);
-//        	  }
+        	window.external.recieveData(this.topicCurrent.answer,this.topicCurrent.type);
+        	this.isAll = true;
+        	clearInterval(this.askTimer);
+            _this = this;
+            this.askTimer = setInterval(function(){
+          	    _this.answerStuLists =window.external.getAnswerList();
+          		if(_this.answerStuLists.length > 0){
+          			_this.answerStuLists = _this.answerStuLists.split("|");
+          		}
+          		_this.answerStuNum = _this.answerStuLists.length;
+          		_this.CountRightAnswer(_this.answerStuLists);
+          	},1000);
         },
         groupAnswerFn:function(){
         	this.isGroup = true;
@@ -398,6 +402,7 @@
         },
         toCountFn:function(){
         	var stuAnswerString = ',';
+        	this.stuAnswerCount = [];
         	_this = this;
         	if(this.answerStuLists.length > 0){
 	        	this.answerStuLists.forEach(function(v,i){
@@ -454,41 +459,56 @@
         },
         groupStartFn:function(){
         	if(this.groupStart){
+        		console.log(1111111)   
+        		this.selectCount();
         		this.isStopAnswer = true;
         		this.groupStopCard = true;
-        		var t = window.external.extiAnswer();
-        		if(t >= 0){
-        			clearInterval(this.askTimer);
-        		}
-//      		alert(this.selectData[0].tanswer);
         	};
         	if(this.enableStart){
+        		console.log(22222222)
 	        	this.groupStart = true;
 	        	this.Rank = false;
         	};
         	if(!this.groupStopCard){
-        	  var temp = window.external.recieveData(this.topicCurrent.answer,this.topicCurrent.type);
-	          if(temp >= 0){
-		        	 clearInterval(this.askTimer);
-		              _this = this;
-		              this.askTimer = setInterval(function(){
-		              	_this.answerStuLists =window.external.getAnswerList();
-		              	if(_this.answerStuLists.length > 0){
-		              		_this.answerStuLists = _this.answerStuLists.split("|");
-		              		for(var i = 0;i < _this.answerStuLists.length;i++){
-			        			temp = _this.answerStuLists[i].split(":");
-			        			_this.selectData.filter(function(e){
-			        				if(temp[0] == e.cardID){
-			        					e.tanswer = temp[1];
-			        				}
-			        			});							
-			        		}
-		              	}
-		              },1000);
-	            }  
+        		console.log(3333333)
+	        	 window.external.recieveData(this.topicCurrent.answer,this.topicCurrent.type);
+	        	 clearInterval(this.askTimer);
+	              _this = this;
+	              this.askTimer = setInterval(function(){
+	              	_this.answerStuLists =window.external.getAnswerList();
+	              	if(_this.answerStuLists.length > 0){
+	              		_this.answerStuLists = _this.answerStuLists.split("|");
+	              		for(var i = 0;i < _this.answerStuLists.length;i++){
+		        			temp = _this.answerStuLists[i].split(":");
+		        			_this.selectData.filter(function(e){
+		        				if(temp[0] == e.cardID){
+		        					e.tanswer = temp[1];
+		        				}
+		        			});							
+		        		}
+	              		
+	              		_this.selectCount();
+	              	}
+	              },1000);
         	}
         },
+        selectCount:function(){
+        	_this = this;
+        	this.selectAnswered = [];
+        	this.selectNoAnswer = [];
+        	this.selectData.filter(function(e){
+				if(e.tanswer){
+					_this.selectAnswered.push(e);
+				}else{
+					_this.selectNoAnswer.push(e);
+				}
+			});	
+        },
+        addScoreFn:function(item){
+        	item.score++;
+        },
         isRankFn:function(){
+        	clearInterval(this.askTimer);
         	this.panelCloseFn();
         	this.Rank = !this.Rank;
 //      	this.groupStart = false;
@@ -559,34 +579,34 @@
         },       
         viaFn:function(){
         	this.isVie = true;
-//      	this.inVie = true;
-        	this.isVied = true;
-        	this.viaName = {'name':'李明','tanswer':'AB'};
+        	this.inVie = true;
+        	this.isVied = false;
+//      	this.viaName = {'name':'李明','tanswer':'AB'};
 //      	this.isVie = true;
 //      	this.inVie = true;
 //      	this.isVied = false;
-//      	this.starArr.forEach(function(item){
-//      		item.light = false;
-//      	});
-//      	window.external.recieveData(this.topicCurrent.answer,this.topicCurrent.type);
-//      	clearInterval(this.askTimer);
-//          _this = this;
-//          this.askTimer = setInterval(function(){
-//            	_this.answerStuLists =window.external.getAnswerList();
-//            	if(_this.answerStuLists.length > 0){
-//            		_this.answerStuLists = _this.answerStuLists.split("|");
-//	        		temp = _this.answerStuLists[0].split(":");
-//					_this.stuList.filter(function (e) {
-//						if(e.cardid == temp[0]){
-//							_this.viaName = e;
-//						}
-//      			});
-//				    _this.viaName.tanswer = temp[1];
-//				    _this.inVie = false;
-//				    _this.isVied = true;
-//					clearInterval(_this.askTimer);
-//            	}
-//          },1000);
+        	this.starArr.forEach(function(item){
+        		item.light = false;
+        	});
+        	window.external.recieveData(this.topicCurrent.answer,this.topicCurrent.type);
+        	clearInterval(this.askTimer);
+            _this = this;
+            this.askTimer = setInterval(function(){
+              	_this.answerStuLists =window.external.getAnswerList();
+              	if(_this.answerStuLists.length > 0){
+              		_this.answerStuLists = _this.answerStuLists.split("|");
+	        		temp = _this.answerStuLists[0].split(":");
+					_this.stuList.filter(function (e) {
+						if(e.cardid == temp[0]){
+							_this.viaName = e;
+						}
+        			});
+				    _this.viaName.tanswer = temp[1];
+				    _this.inVie = false;
+				    _this.isVied = true;
+					clearInterval(_this.askTimer);
+              	}
+            },1000);
         },
         rewardFn:function(flag){
         	this.starArr.forEach(function(item){
@@ -605,42 +625,37 @@
         startRandom:function(){
         	this.randomRusult = true;
         	this.randomStuName = true;
-//      	this.randomAnswer = true;
+        	this.randomAnswer = false;
         	this.allParse = false;
-        	this.randomName={'name':'李明','tanswer':'AB'};
-
+//      	this.randomName={'name':'李明','tanswer':'AB'};
         	
-        	
-        	
-//      	this.starArr.forEach(function(item){
-//      		item.light = false;
-//      	});       	
-////      	var num = Math.floor(Math.random()*this.stuList.length);
-//      	var num = Math.floor(Math.random()*3);
-//      	this.randomName = this.stuList[num];
+        	this.starArr.forEach(function(item){
+        		item.light = false;
+        	});       	
+        	var num = Math.floor(Math.random()*this.stuList.length);
+        	var num = Math.floor(Math.random()*3);
+        	this.randomName = this.stuList[num];
 //      	this.randomRusult = true;
 //      	this.randomStuName = true;
 //      	this.allParse = false;
-//      	var t = window.external.recieveData(this.topicCurrent.answer,this.topicCurrent.type);
-//      	if(t >= 0){
-//	        	 clearInterval(this.askTimer);
-//	              _this = this;
-//	              this.askTimer = setInterval(function(){
-//	              	_this.answerStuLists =window.external.getAnswerList();
-//	              	if(_this.answerStuLists.length > 0){
-//	              		_this.answerStuLists = _this.answerStuLists.split("|");
-//	              		for(var i = 0;i < _this.answerStuLists.length;i++){
-//		        			temp = _this.answerStuLists[i].split(":");
-//							if(temp[0] == _this.randomName.cardid){
-//								_this.randomName.tanswer = temp[1];
-//								_this.randomStuName = false;
-//								_this.randomAnswer = true;
-//								clearInterval(_this.askTimer);
-//							}
-//		        		}
-//	              	}
-//	              },1000);
-//          }
+        	window.external.recieveData(this.topicCurrent.answer,this.topicCurrent.type);
+        	 clearInterval(this.askTimer);
+              _this = this;
+              this.askTimer = setInterval(function(){
+              	_this.answerStuLists =window.external.getAnswerList();
+              	if(_this.answerStuLists.length > 0){
+              		_this.answerStuLists = _this.answerStuLists.split("|");
+              		for(var i = 0;i < _this.answerStuLists.length;i++){
+	        			temp = _this.answerStuLists[i].split(":");
+						if(temp[0] == _this.randomName.cardid){
+							_this.randomName.tanswer = temp[1];
+							_this.randomStuName = false;
+							_this.randomAnswer = true;
+							clearInterval(_this.askTimer);
+						}
+	        		}
+              	}
+              },1000);
         },
         randomParseFn:function(){
         	 this.allParse = true;

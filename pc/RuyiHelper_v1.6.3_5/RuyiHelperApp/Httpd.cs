@@ -630,15 +630,6 @@ namespace RueHelper
             {
                 //FormDraw.ClearRecord();
                 string data = handleLogin(pList, clientIp);
-                if (answer_card == null)
-                {
-                    answer_card = new AnswerCard();
-                    answer_card.Message();
-                }
-                else 
-                {
-                    answer_card.Message();
-                }
                 return data;
             }
             else if (action.IndexOf("AutoChangeClass") >= 0)//
@@ -805,13 +796,13 @@ namespace RueHelper
         private static string startSetSeat() 
         {  
             Global.setSeatBtn = true;
-            AnswerCard.RaiseStart();   //启动答题卡举手           
+            //AnswerCard.RaiseStart();   //启动答题卡举手           
             return "启动设置座位成功";
         }
         private static string closeSetSeat()
         {
             Global.setSeatBtn = false;
-            AnswerCard.AnswerStop();   //结束答题卡举手
+            //AnswerCard.AnswerStop();   //结束答题卡举手
             return "关闭设置座位成功";
         }
 

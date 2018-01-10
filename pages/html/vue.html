@@ -59,7 +59,7 @@
                 <div class="progress" v-show="isGroup && groupStart && !Rank">
                 	<div class="look" @click="groupStartFn()">
                 		<img src="img/look.png" alt="" />
-                		<span>作答进度({{answerStuLists.length}}/{{selectData.length}})</span>
+                		<span>作答进度({{selectAnswered.length}}/{{selectData.length}})</span>
                 	</div>
                 	<div class="end" @click="isRankFn()">
                 		<img src="img/end.png" alt="" />
@@ -128,17 +128,8 @@
             				<div class="anser">{{x[0].tanswer}}({{x.length}}人)</div>
             				<div class="cont">
             					<span v-for="sub in x">{{sub.name}}</span>
-            					<!--<span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span>
-            					<span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span>
-            					<span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span>-->
             				</div>
             			</li>
-            			<!--<li class="item">  
-            				<div class="anser">BC(33人)</div>
-            				<div class="cont">
-            					<span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span>
-            				</div>
-            			</li>-->
             		</ul>
             		<div class="right">
             			<div class="title">作答统计</div>
@@ -179,41 +170,35 @@
             </div>
             <!--小组奖励页面-->
             <div class="groupReward" v-show="isStopAnswer && !allParse">
-            	<header><span class="left">已答:2组</span><span class="right">未答:3组</span></header>
+            	<header><span class="left">已答:{{selectAnswered.length}}组</span><span class="right">未答:{{selectNoAnswer.length}}组</span></header>
             	<div class="cont">
             		<ul class="left">
-            			<li>
+            			<li v-for="item in selectAnswered">
+            				<div class="item">
+	            				<div class="groupNum">{{item.groupNum}}组</div>
+	            				<div class="name">{{item.name}}</div>
+            				</div>
+            			</li> 
+            			<!--<li>
             				<div class="item">
 	            				<div class="groupNum">1组</div>
 	            				<div class="name">张小白</div>
             				</div>
-            			</li>
-            			<li>
-            				<div class="item">
-	            				<div class="groupNum">1组</div>
-	            				<div class="name">张小白</div>
-            				</div>
-            			</li>
-            			<li>
-            				<div class="item">
-	            				<div class="groupNum">1组</div>
-	            				<div class="name">张小白</div>
-            				</div>
-            			</li>
-            			<li>
-            				<div class="item">
-	            				<div class="groupNum">1组</div>
-	            				<div class="name">张小白</div>
-            				</div>
-            			</li>
+            			</li>           			-->
             		</ul>
             		<ul class="right">
-            			<li>
+            			<li v-for="item in selectNoAnswer">
+            				<div class="item">
+	            				<div class="groupNum">{{item.groupNum}}组</div>
+	            				<div class="name">{{item.name}}</div>
+            				</div>
+            			</li> 
+            			<!--<li>
             				<div class="item">
 	            				<div class="groupNum">1组</div>
 	            				<div class="name">张小白</div>
             				</div>
-            			</li>
+            			</li>-->
             		</ul>
             	</div>
             	<!--<ul class="cont">
@@ -236,7 +221,7 @@
             </div>
             <!--小组排行榜页面-->
             <div class="groupRank" v-show="Rank">
-            	<header>正确答案:ABD</header>
+            	<header>正确答案:{{topicCurrent.answer}}</header>
             	<ul class="cont">
             		<!--<li v-for="item in  selectData">
             			<div class="item">
@@ -244,70 +229,22 @@
             				<div class="score">{{item.score}}</div>
             			</div>
             		</li>-->
-            		<li>
+            		<li v-for="item in  selectData" @click="addScoreFn(item)">
+            			<div class="item">
+            				<div class="groupNum"><span>{{item.groupNum}}组</span></div>
+            				<div class="score">{{item.score}}分</div>
+            				<div class="answer" :class="{'noAnswer':!item.tanswer}">{{item.tanswer}}</div>
+            				<div class="name">{{item.name}}</div>
+            			</div>
+            		</li>
+            		<!--<li>
             			<div class="item">
             				<div class="groupNum"><span>1组</span></div>
             				<div class="score">13分</div>
             				<div class="answer">AB</div>
             				<div class="name">张小白</div>
             			</div>
-            		</li>
-            		<li>
-            			<div class="item">
-            				<div class="groupNum"><span>1组</span></div>
-            				<div class="score">13分</div>
-            				<div class="answer">AB</div>
-            				<div class="name">张小白</div>
-            			</div>
-            		</li>
-            		<li>
-            			<div class="item">
-            				<div class="groupNum"><span>1组</span></div>
-            				<div class="score">13分</div>
-            				<div class="answer">AB</div>
-            				<div class="name">张小白</div>
-            			</div>
-            		</li>
-            		<li>
-            			<div class="item">
-            				<div class="groupNum"><span>1组</span></div>
-            				<div class="score">13分</div>
-            				<div class="answer">AB</div>
-            				<div class="name">张小白</div>
-            			</div>
-            		</li>
-            		<li>
-            			<div class="item">
-            				<div class="groupNum"><span>1组</span></div>
-            				<div class="score">13分</div>
-            				<div class="answer">AB</div>
-            				<div class="name">张小白</div>
-            			</div>
-            		</li>
-            		<li>
-            			<div class="item">
-            				<div class="groupNum"><span>1组</span></div>
-            				<div class="score">13分</div>
-            				<div class="answer">AB</div>
-            				<div class="name">张小白</div>
-            			</div>
-            		</li>
-            		<li>
-            			<div class="item">
-            				<div class="groupNum"><span>1组</span></div>
-            				<div class="score">13分</div>
-            				<div class="answer">AB</div>
-            				<div class="name">张小白</div>
-            			</div>
-            		</li>
-            		<li>
-            			<div class="item">
-            				<div class="groupNum"><span>1组</span></div>
-            				<div class="score">13分</div>
-            				<div class="answer">AB</div>
-            				<div class="name">张小白</div>
-            			</div>
-            		</li>
+            		</li>   		-->
             	</ul>
             	<div class="tip">点击小组加分</div>
             </div>
