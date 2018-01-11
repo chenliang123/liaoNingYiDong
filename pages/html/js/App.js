@@ -3,6 +3,12 @@
     el: "#app",
     // 绑定的数据(即调用的变量)，可以实时监听变化
     data: {
+    	schoolid:"",
+    	teacherid:"",
+    	classid:"",
+    	courseid:"",
+    	lessonid:"",
+    	ctime:"",
     	stuList:"",     //班级学生人名列表
     	stuListNum:0,   //班级学生总人数
     	answerStuLists:[], //答题学生人名列表
@@ -116,6 +122,8 @@
 //      	  	console.log(res)
 //      	  });
         	  
+        	
+        	  
         	  
         	  this.mulConfirm = true;
               this.getData();
@@ -127,6 +135,16 @@
               	this.stuList[i] = JSON.parse(this.stuList[i]);
               }
               clearInterval(this.askTimer);
+              
+              var infor = window.external.getInfor();
+        	  var inforArr = infor.split(",");
+        	  this.schoolid = inforArr[0];
+        	  this.teacherid = inforArr[1];
+        	  this.classid = inforArr[2];
+        	  this.courseid = inforArr[3];
+        	  this.lessonid = inforArr[4];
+        	  
+        	  
 //            _this = this;
 //            this.askTimer = setInterval(function(){
 //            	_this.answerStuLists =window.external.getAnswerList();
@@ -151,12 +169,12 @@
               		});
              }
             }, function (res) {
-                alert("获取数据失败");
+
             });
             this.$http.get("http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=getTeacherQuestionList").then(function (res) {
             	this.mulTopicData = res.body.data;
             }, function (res) {
-                alert("获取数据失败");
+
             });
             this.$http.get("http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=getTeacherFavoriteList&teacherid=7940&classid=1878&callback").then(function (res) {
 				var _this = this;
@@ -174,7 +192,7 @@
 //					this.topicCurrent = this.topicData[0];
 				};
             }, function (res) {
-                alert("获取数据失败");
+
             });
         },
         getById:function(id,callback){
@@ -317,6 +335,7 @@
 //      	window.external.recieveData(this.topicCurrent.answer,this.topicCurrent.topicType);
         },
         allAnswerFn:function(){
+        	this.ctime = this.getNowFormatDate();
         	window.external.recieveData(this.topicCurrent.answer,this.topicCurrent.type);
         	this.isAll = true;
         	clearInterval(this.askTimer);
@@ -330,7 +349,35 @@
           		_this.CountRightAnswer(_this.answerStuLists);
           	},1000);
         },
+        getNowFormatDate:function() {
+		    var date = new Date();
+		    var month = date.getMonth() + 1;
+		    var strDate = date.getDate();
+		    var strHour = date.getHours();
+		    var strMin = date.getMinutes();
+		    var strSec = date.getSeconds();
+		    if (month >= 1 && month <= 9) {
+		        month = "0" + month;
+		    }
+		    if (strDate >= 0 && strDate <= 9) {
+		        strDate = "0" + strDate;
+		    }
+		    if (strHour >= 0 && strHour <= 9) {
+		        strHour = "0" + strHour;
+		    }
+		    if (strMin >= 0 && strMin <= 9) {
+		        strMin = "0" + strMin;
+		    }
+		    if (strSec >= 0 && strSec <= 9) {
+		        strSec = "0" + strSec;
+		    }
+		    
+		    var currentdate = date.getFullYear() + month  + strDate
+		            + strHour  + strMin + strSec;
+		    return currentdate;
+		},
         groupAnswerFn:function(){
+        	this.ctime = this.getNowFormatDate();
         	this.isGroup = true;
         },       
         trait:function(flag){
@@ -398,7 +445,50 @@
         	this.isAllCount  = !this.isAllCount;
         	this.allCount = !this.allCount;
         	this.toCountFn();
-        	window.external.extiAnswer();
+        	this.upDataOfAll();
+        },
+        upDataOfAll:function(){
+          var _this = this;
+          var answerData = "";
+          answerData = window.external.getAnswerList();
+          if(answerData.length > 0){
+          	   answerData = answerData.split("|");
+          	   for(var index in answerData){
+          	   		answerData[index] = this.idReplace(answerData[index]);
+          	   		answerData[index] = answerData[index] + ":5"
+          	   };
+          	   answerData = answerData.join(",");
+          };         
+      	  this.$http.post('http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=addResourceXiti',
+				        	  	{
+				        	  	lessonid:_this.lessonid,
+				        	  	courseid:_this.courseid,
+				        	  	classid:_this.classid,
+				        	  	schoolid:_this.schoolid,
+				        	  	teacherid:_this.teacherid,
+				        	  	ctime:_this.ctime,
+				        	  	duration:"15",
+				        	  	rid:"",
+				        	  	result:answerData,
+				        	  	testid:_this.topicCurrent.id,
+				        	  	type:encodeURI(_this.topicCurrent.type),
+				        	  	mode:0,
+				        	  	answer:_this.topicCurrent.answer
+				        	  },
+			  				  {emulateJSON:true}
+		  				 ).then(function (res) {
+				           }, function (res) {
+				           });
+        },
+        idReplace:function(item){
+        	item = item.split(":");
+        	this.stuList.filter(function (e) {
+        				if(e.cardid == item[0]){
+        					item[0] = e.id;
+        				}
+			    	});
+			item = item.join(":");
+			return item;
         },
         toCountFn:function(){
         	var stuAnswerString = ',';
@@ -509,12 +599,49 @@
         },
         isRankFn:function(){
         	clearInterval(this.askTimer);
+        	this.upDataGroup();
         	this.panelCloseFn();
         	this.Rank = !this.Rank;
 //      	this.groupStart = false;
 			this.selectData.sort(function(a,b){
             					return b.score-a.score
 							});
+        },
+        upDataGroup:function(){
+        	var data = "";
+        	this.selectData.filter(function(e){
+        		if(!e.tanswer){
+        			e.tanswer = "";
+        		};
+        		if(data){
+        			data += "," + e.groupNum + ":" + e.id + ":" + e.tanswer;
+        		}else{
+        			data = e.groupNum + ":" + e.id + ":" + e.tanswer;
+        		}
+        	});
+        	 this.$http.post('http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=addGroupRace',
+				        	  	{
+				        	  	lessonid:_this.lessonid,
+				        	  	courseid:_this.courseid,
+				        	  	classid:_this.classid,
+				        	  	schoolid:_this.schoolid,
+				        	  	teacherid:_this.teacherid,
+				        	  	ctime:_this.ctime,
+				        	  	duration:"15",
+				        	  	rid:"",
+				        	  	result:data,
+				        	  	nums:_this.selectData.length,
+				        	  	testid:_this.topicCurrent.id,
+				        	  	type:encodeURI(_this.topicCurrent.type),
+				        	  	mode:0,
+				        	  	answer:_this.topicCurrent.answer
+				        	  },
+			  				  {emulateJSON:true}
+		  				  ).then(function (res) {
+
+				            }, function (res) {
+
+				           });
         },
         selectAnswerFn:function(item){
         	this.selectData = [];
@@ -578,6 +705,7 @@
         	}
         },       
         viaFn:function(){
+        	this.ctime = this.getNowFormatDate();
         	this.isVie = true;
         	this.inVie = true;
         	this.isVied = false;
@@ -605,8 +733,36 @@
 				    _this.inVie = false;
 				    _this.isVied = true;
 					clearInterval(_this.askTimer);
+					_this.upDataVia(temp[0],temp[1]);
               	}
             },1000);
+        },
+        upDataVia:function(cardid,answer){
+        	var data = cardid + ":" + answer;
+        	data = this.idReplace(data);
+        	data += ":5";
+        	this.$http.post('http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=addCompetitive',
+				        	  	{
+				        	  	lessonid:_this.lessonid,
+				        	  	courseid:_this.courseid,
+				        	  	classid:_this.classid,
+				        	  	schoolid:_this.schoolid,
+				        	  	teacherid:_this.teacherid,
+				        	  	ctime:_this.ctime,
+				        	  	duration:"15",
+				        	  	rid:"",
+				        	  	result:data,
+				        	  	testid:_this.topicCurrent.id,
+				        	  	type:encodeURI(_this.topicCurrent.type),
+				        	  	mode:0,
+				        	  	answer:_this.topicCurrent.answer
+				        	  },
+			  				  {emulateJSON:true}
+		  				  ).then(function (res) {
+
+				            }, function (res) {
+
+				           });
         },
         rewardFn:function(flag){
         	this.starArr.forEach(function(item){
@@ -623,6 +779,7 @@
         	this.startRandom();
         },
         startRandom:function(){
+        	this.ctime = this.getNowFormatDate();
         	this.randomRusult = true;
         	this.randomStuName = true;
         	this.randomAnswer = false;
@@ -652,10 +809,36 @@
 							_this.randomStuName = false;
 							_this.randomAnswer = true;
 							clearInterval(_this.askTimer);
+							_this.upDataRandom(temp[0],temp[1]);
 						}
 	        		}
               	}
               },1000);
+        },
+        upDataRandom:function(cardid,answer){
+        	var data = cardid + ":" + answer;
+        	data = this.idReplace(data);
+        	data += ":5";
+        	this.$http.post('http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=addCallname',
+				        	  	{
+				        	  	lessonid:_this.lessonid,
+				        	  	courseid:_this.courseid,
+				        	  	classid:_this.classid,
+				        	  	schoolid:_this.schoolid,
+				        	  	teacherid:_this.teacherid,
+				        	  	ctime:_this.ctime,
+				        	  	duration:"15",
+				        	  	rid:"",
+				        	  	result:data,
+				        	  	testid:_this.topicCurrent.id,
+				        	  	type:encodeURI(_this.topicCurrent.type),
+				        	  	mode:0,
+				        	  	answer:_this.topicCurrent.answer
+				        	  },
+			  				  {emulateJSON:true}
+		  				 ).then(function (res) {
+				           }, function (res) {
+				           });
         },
         randomParseFn:function(){
         	 this.allParse = true;
@@ -664,6 +847,7 @@
 //      	 this.isVied = false;
         },
         startVieFn:function(){
+        	this.ctime = this.getNowFormatDate();
         	this.starArr.forEach(function(item){
         		item.light = false;
         	});
@@ -686,6 +870,7 @@
 				    _this.inVie = false;
 				    _this.isVied = true;				    
 					clearInterval(_this.askTimer);
+					_this.upDataVia(temp[0],temp[1]);
               	}
             },1000);
         },
@@ -802,8 +987,7 @@
 				};
 				this.initFn();
 				clearInterval(this.askTimer);
-            }, function (res) {
-                alert("获取数据失败");
+           }, function (res) {
             });
         },
         showQuizeFn:function(){

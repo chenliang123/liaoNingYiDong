@@ -117,6 +117,11 @@ namespace RueHelper
         {
             return Global.AnswerStu;
         }
+        public string getInfor()
+        {
+            string data = Global.getSchoolID() + "," + Global.getTeacherID() + "," + Global.getClassID() + "," + Global.getCourseID() + "," + Global.getLessonID();
+            return data;
+        }
         public int recieveData(string answer, string type)
         {
             int temp = 0;

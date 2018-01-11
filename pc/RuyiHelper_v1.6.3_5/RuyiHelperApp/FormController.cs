@@ -450,7 +450,8 @@ namespace RueHelper
 
             string imgPath = imgDir + "\\" + imgName;
             bmp.Save(imgPath);
-            // Common.uploadPicture(imgPath);
+
+            Common.uploadPicture(imgPath);
 
             string imgPathEncoded = System.Web.HttpUtility.UrlEncode(imgPath, Encoding.UTF8);
 

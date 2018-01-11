@@ -3,6 +3,12 @@ var vm = new Vue({
     el: "#app",
     // 绑定的数据(即调用的变量)，可以实时监听变化
     data: {
+    	schoolid:"",
+    	teacherid:"",
+    	classid:"",
+    	courseid:"",
+    	lessonid:"",
+    	ctime:"",
     	bgStyle:{background:"white"},
     	stuList:"",     //班级学生人名列表
     	stuListNum:0,   //班级学生总人数
@@ -67,6 +73,7 @@ var vm = new Vue({
         isQuize:false,
         topicData:[],                     //开始题的数据管理
         topicCurrent:{},
+        imgName:"",            //上传服务器图片名称
     },
     watch:{
 //  	groupData:function(value){
@@ -107,13 +114,23 @@ var vm = new Vue({
               	this.stuList[i] = JSON.parse(this.stuList[i]);
               }
               clearInterval(this.askTimer);
-			  var path = window.location.hash;			  
+			  var path = window.location.hash;
               path = path.substring(1);
               pathStr = path.substring(0,8);
+              this.imgName = path;
               path = "../" + pathStr + "/" + path;
               this.bgStyle = {
               	background:"url("+path+")",
               };
+              
+              var infor = window.external.getInfor();
+        	  var inforArr = infor.split(",");
+        	  this.schoolid = inforArr[0];
+        	  this.teacherid = inforArr[1];
+        	  this.classid = inforArr[2];
+        	  this.courseid = inforArr[3];
+        	  this.lessonid = inforArr[4];
+              this.ctime = this.getNowFormatDate();
         })
     },
     // 实例内要用到的所有方法,本地调取json文件失败
@@ -146,6 +163,33 @@ var vm = new Vue({
                 alert("获取数据失败");
             });
         },
+        getNowFormatDate:function() {
+		    var date = new Date();
+		    var month = date.getMonth() + 1;
+		    var strDate = date.getDate();
+		    var strHour = date.getHours();
+		    var strMin = date.getMinutes();
+		    var strSec = date.getSeconds();
+		    if (month >= 1 && month <= 9) {
+		        month = "0" + month;
+		    }
+		    if (strDate >= 0 && strDate <= 9) {
+		        strDate = "0" + strDate;
+		    }
+		    if (strHour >= 0 && strHour <= 9) {
+		        strHour = "0" + strHour;
+		    }
+		    if (strMin >= 0 && strMin <= 9) {
+		        strMin = "0" + strMin;
+		    }
+		    if (strSec >= 0 && strSec <= 9) {
+		        strSec = "0" + strSec;
+		    }
+		    
+		    var currentdate = date.getFullYear() + month  + strDate
+		            + strHour  + strMin + strSec;
+		    return currentdate;
+		},
         CountAnswerFn:function(list){
         	var match = [];
         	var newAnswerList = [];
@@ -377,6 +421,51 @@ var vm = new Vue({
         	this.isAllCount  = !this.isAllCount;
         	this.allCount = !this.allCount;
         	this.toCountFn();
+        	this.upDataXiti();
+        },
+        upDataXiti:function(){
+        	  var _this = this;
+	          var answerData = "";
+	          answerData = window.external.getAnswerList();
+	          if(answerData.length > 0){
+	          	   answerData = answerData.split("|");
+	          	   for(var index in answerData){
+	          	   		answerData[index] = this.idReplace(answerData[index]);
+	          	   		answerData[index] = answerData[index] + ":5"
+	          	   };
+	          	   answerData = answerData.join(",");
+	          };   
+        	this.$http.post('http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=addXitiResult',
+				        	  	{
+				        	  	lessonid:_this.lessonid,
+				        	  	courseid:_this.courseid,
+				        	  	classid:_this.classid,
+				        	  	schoolid:_this.schoolid,
+				        	  	teacherid:_this.teacherid,
+				        	  	ctime:_this.ctime,
+				        	  	duration:"15",
+				        	  	rid:_this.schoolid + "-" + _this.classid + "-" + _this.ctime,
+				        	  	result:answerData,
+				        	  	type:encodeURI((_this.type == 1)?"选择题":"判断题"),
+				        	  	imgname:this.imgName,
+				        	  	answer:_this.answerData
+				        	  },
+			  				  {emulateJSON:true}
+		  				  ).then(function (res) {
+
+				            }, function (res) {
+
+				           });
+        },
+        idReplace:function(item){
+        	item = item.split(":");
+        	this.stuList.filter(function (e) {
+        				if(e.cardid == item[0]){
+        					item[0] = e.id;
+        				}
+			    	});
+			item = item.join(":");
+			return item;
         },
         toCountFn:function(){
         	var stuAnswerString = ',';
