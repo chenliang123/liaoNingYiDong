@@ -7,6 +7,7 @@ var vm = new Vue({
     	stuList:"",     //班级学生人名列表
     	stuListNum:0,   //班级学生总人数
     	answerStuLists:[], //答题学生人名列表
+    	answerStuCopy:[],  //答题学生拷贝
     	answerStuNum:0, //答题学生人数
     	dadui:"",       //答对学生人名列表
     	dacuo:"",       //答错学生人名列表
@@ -145,6 +146,33 @@ var vm = new Vue({
                 alert("获取数据失败");
             });
         },
+        CountAnswerFn:function(list){
+        	var match = [];
+        	var newAnswerList = [];
+        	var temp = null;
+        	var t;
+        	if(list.length > 0){
+        		for(var i = 0;i < list.length;i++){
+        			temp = list[i].split(":");
+        			that = this;
+        			this.stuList.filter(function (e) {
+        				if(e.cardid == temp[0]){
+        					e.tanswer = temp[1];
+        					newAnswerList.push(e);
+        				}
+			        });	
+			        if(newAnswerList[newAnswerList.length-1].tanswer != null){
+			        	newAnswerList[newAnswerList.length-1].tanswer = temp[1];
+			        }
+        		}
+        		this.noAnswerList = this.stuList.filter(function (e) {
+			        return e.tanswer == "";
+			    });
+        		this.answerStuLists = newAnswerList;
+        	}else{
+        		this.noAnswerList = this.stuList;
+        	}
+        },
         CountRightAnswer:function(list){
         	var match = [];
         	var newAnswerList = [];
@@ -248,20 +276,18 @@ var vm = new Vue({
         answerFn:function(type){
         	this.isAll = true;
         	this.type = type;
-//      	var temp = window.external.generalRecieveData(type);
-//      	if(temp >= 0){
-//	        	this.isAll = true;
-//	        	clearInterval(this.askTimer);
-//	            _this = this;
-//	            this.askTimer = setInterval(function(){
-//	          	    _this.answerStuLists =window.external.getAnswerList();
-//	          		if(_this.answerStuLists.length > 0){
-//	          			_this.answerStuLists = _this.answerStuLists.split("|");
-//	          		}
-//	          		_this.answerStuNum = _this.answerStuLists.length;
-	          		//_this.CountRightAnswer(_this.answerStuLists);    //放到结束答题中统计正确，错误
-//	          	},1000);
-//        	  }
+        	window.external.recieveData("AB",this.type);
+        	clearInterval(this.askTimer);
+            _this = this;
+            this.askTimer = setInterval(function(){
+          	    _this.answerStuLists =window.external.getAnswerList();
+          		if(_this.answerStuLists.length > 0){
+          			_this.answerStuLists = _this.answerStuLists.split("|");
+          		}
+          		_this.answerStuNum = _this.answerStuLists.length;
+          		_this.answerStuCopy = _this.answerStuLists.slice(0);
+          		_this.CountAnswerFn(_this.answerStuLists);    //放到已答和未答学生列表
+          	},1000);
         },
         setAnswer:function(item){
         	item.sel = !item.sel;
@@ -302,7 +328,8 @@ var vm = new Vue({
         			_this.answerData += ele.name;
         		}
         	});
-//      	this.CountRightAnswer(this.answerStuLists); 
+        	
+        	this.CountRightAnswer(this.answerStuCopy); 
         	var myChart = echarts.init(document.getElementById('main'));
 	        var	option = {
 				    legend: {

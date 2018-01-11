@@ -25,7 +25,7 @@
                 <div class="progress" v-show="isAll">
                 	<div class="look" @click="allInforFn()">
                 		<img src="img/look.png" alt="" />
-                		<span>作答进度(0/21)</span>
+                		<span>作答进度({{answerStuNum}}/{{stuListNum}})</span>
                 	</div>
                 	<div class="end" @click="stopAnswerFn()">
                 		<img src="img/end.png" alt="" />
