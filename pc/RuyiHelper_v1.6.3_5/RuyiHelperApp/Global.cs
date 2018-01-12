@@ -196,7 +196,7 @@ namespace RueHelper
             HOST = config.AppSettings.Settings["host"].Value;
             url_hd = "http://" + HOST + "/hd.do?";
             url_class = "http://" + HOST + "/class.do?";
-            url_assistant = "http://" + HOST + "/assistant.do?";
+            url_assistant = "http://" + HOST + "/pcgroupnet?";
 
             Log.Info("Global.6");
 

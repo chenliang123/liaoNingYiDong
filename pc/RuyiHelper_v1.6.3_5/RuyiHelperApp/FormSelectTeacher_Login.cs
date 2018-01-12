@@ -282,7 +282,7 @@ namespace RueHelper
             fParent = null;
             this.Dispose();
             this.Close();
-
+            Common.setLessonOff(0,"","");
         }
 
         private void textBox1_MouseDown(object sender, MouseEventArgs e)

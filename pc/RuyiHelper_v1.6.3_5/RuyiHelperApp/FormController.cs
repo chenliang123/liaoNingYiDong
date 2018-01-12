@@ -717,6 +717,20 @@ namespace RueHelper
 
         private void pictureBox_home_Click(object sender, EventArgs e)
         {
+            //批注截屏上传
+            Bitmap bmp = ScreenCapture.captureScreen(0, 0);
+            string base64 = Util.ImgToBase64String(bmp);
+            int imgHeight = bmp.Height;
+            int imgWidth = bmp.Width;
+            string imgName = Global.getSchoolID() + "-" + Global.getClassID() + "-" + DateTime.Now.ToString("yyyyMMdd") + DateTime.Now.ToString("HHmmss") + ".jpg";
+            string imgDir = Application.StartupPath + "\\" + DateTime.Now.ToString("yyyyMMdd");
+            if (!Directory.Exists(imgDir))
+                Directory.CreateDirectory(imgDir);
+            string imgPath = imgDir + "\\" + imgName;
+            bmp.Save(imgPath);
+            Common.uploadPicture(imgPath);
+            Common.doPost("addDrawViewEvent","filename=" + imgName);
+
             this.ShowMainPage();
         }
         private void pictureBox_return_Click(object sender, EventArgs e)
