@@ -28,6 +28,12 @@ var vm = new Vue({
     el: "#app",
     // 绑定的数据(即调用的变量)，可以实时监听变化
     data: {
+    	schoolid:"",
+    	teacherid:"",
+    	classid:"",
+    	courseid:"",
+    	lessonid:"",
+    	ctime:"",
     	appId:'vke8u7u7y3',
 	  	accesstoken:'RmHQtUNz+D1xaC1YuQZV2h3xN7PKK3UHQ8wak3KoNLs=',
 	  	httpStr:'http://api.kuaxue.com',
@@ -236,7 +242,13 @@ var vm = new Vue({
 	  				});
 	  			});	
               
-              
+              var infor = window.external.getInfor();
+        	  var inforArr = infor.split(",");
+        	  this.schoolid = inforArr[0];
+        	  this.teacherid = inforArr[1];
+        	  this.classid = inforArr[2];
+        	  this.courseid = inforArr[3];
+        	  this.lessonid = inforArr[4];
               
 //            _this = this;
 //            this.askTimer = setInterval(function(){
@@ -813,6 +825,7 @@ var vm = new Vue({
 				        	  },
 			  				  {emulateJSON:true}
 		  				).then(function (res) {
+
 				           }, function (res) {
 				           });
         },
