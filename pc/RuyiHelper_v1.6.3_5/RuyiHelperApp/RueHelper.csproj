@@ -153,7 +153,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="RobotpenGateway, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\robotpen\RobotpenGateway.dll</HintPath>
+      <HintPath>dll\robotpen_1.1\RobotpenGateway.dll</HintPath>
     </Reference>
     <Reference Include="SkinForm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -190,6 +190,12 @@
     <Compile Include="AnswersCollection.cs" />
     <Compile Include="Animate.cs" />
     <Compile Include="AnswerCount.cs" />
+    <Compile Include="FormLessonOver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLessonOver.Designer.cs">
+      <DependentUpon>FormLessonOver.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCaptureScreen2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -511,6 +517,10 @@
     <Compile Include="YingShi\HkSDK.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLessonOver.resx">
+      <DependentUpon>FormLessonOver.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCaptureScreen2.resx">
       <DependentUpon>FormCaptureScreen2.cs</DependentUpon>
@@ -983,6 +993,7 @@
     <None Include="Resources\controller\controller_xitiInClass.png" />
     <None Include="Resources\controller\controller_myCollect.png" />
     <None Include="Resources\controller\controller_myExam.png" />
+    <None Include="Resources\lessonover.png" />
     <Content Include="Resources\myCode.jpg" />
     <Content Include="Resources\myLogo.jpg" />
     <None Include="Resources\voteF_top.png" />

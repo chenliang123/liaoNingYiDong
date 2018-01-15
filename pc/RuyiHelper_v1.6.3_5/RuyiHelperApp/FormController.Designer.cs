@@ -176,6 +176,7 @@ namespace RueHelper
             this.SkinSize = new System.Drawing.Size(625, 82);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRue";
+
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_pen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_folder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_xitis)).EndInit();

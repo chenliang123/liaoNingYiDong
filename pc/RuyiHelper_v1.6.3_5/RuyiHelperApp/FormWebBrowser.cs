@@ -73,7 +73,7 @@ namespace RueHelper
             }
             //string path = Application.StartupPath + @"\html\vue.html";
             //this.webBrowser1.Navigate(path);
-            this.TopMost = false;
+            this.TopMost = true;
             this.Hide();
         }
         public void navigate(String url)

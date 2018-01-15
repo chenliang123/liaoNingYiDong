@@ -21,14 +21,14 @@ namespace RueHelper
         {
             InitializeComponent();
 
-            this.Opacity = 0.80; // 窗体透明度
+            this.Opacity = 0.2; // 窗体透明度
             this.childForm = new FormSelectTeacher_Login(this, type);
             this.childForm.Owner = this;    // 这支所属窗体                
             this.childForm.Dock = DockStyle.Fill;
             this.childForm.Show();
             this.childForm.BringToFront();
             childForm.Location = new Point(this.Location.X, this.Location.Y);
-            this.childForm.Size = new Size(this.Size.Width, this.Height);
+            this.childForm.Size = new Size(this.Size.Width-5, this.Height-5);
 
             //mouseControl();  
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.UserPaint, true);

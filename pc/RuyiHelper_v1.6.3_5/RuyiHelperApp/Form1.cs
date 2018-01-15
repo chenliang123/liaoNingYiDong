@@ -162,8 +162,11 @@ namespace RueHelper
         {
             if(show){
                 fController.Display(true);
+                fController.AllShow();
+                fController.TopMost = true;
             }else{
                 fController.Display(false);
+                fController.AllHide();
             }
         }
         /// <summary>

@@ -151,7 +151,7 @@ namespace RueHelper
         {
             //截屏
             Size size = new System.Drawing.Size(screenWidth, SystemInformation.WorkingArea.Height - 80);
-            
+            this.TopMost = false;
             try
             {
                 Bitmap bmp = ScreenCapture.captureScreen(0, 0);
@@ -171,7 +171,9 @@ namespace RueHelper
         }
         private void pictureBox_main_lessonover_Click(object sender, EventArgs e)
         {
-            this.LessonOver();
+            //EService.ShowSelectTeacher(true, 2);
+            FormLessonOver f = new FormLessonOver();
+            f.Show();
         }
         #endregion
 
@@ -435,6 +437,8 @@ namespace RueHelper
         #region 课堂出题 panel_folder
         public void ShowFolders()
         {
+            this.AllHide();
+
             //this.Height = 0;
             path = 20;//文件夹
             Bitmap bmp = ScreenCapture.captureScreen(0, 0);
@@ -453,8 +457,10 @@ namespace RueHelper
 
             Common.uploadPicture(imgPath);
 
-            string imgPathEncoded = System.Web.HttpUtility.UrlEncode(imgPath, Encoding.UTF8);
+            this.AllShow();
+            this.TopMost = false;
 
+            string imgPathEncoded = System.Web.HttpUtility.UrlEncode(imgPath, Encoding.UTF8);
             string url = Application.StartupPath + @"\html\xiti.html?#" + imgName;
             Form1.formWeb = new FormWebBrowser();
             Form1.formWeb.navigate(url);
@@ -462,15 +468,15 @@ namespace RueHelper
 
         public void showColection()
         {
+            this.TopMost = false;
+
             string url = Application.StartupPath + @"\html\vue.html";
             Form1.formWeb = new FormWebBrowser();
             Form1.formWeb.navigate(url);
+
+
         }
 
-        public void LessonOver()
-        {
-            EService.ShowSelectTeacher(true,2);
-        }
 
 
         //试题
@@ -614,6 +620,7 @@ namespace RueHelper
         public void ShowXitis()
         {
             path = 20;
+            this.TopMost = false;
             string url = Application.StartupPath + @"\html\tiku.html";
             Form1.formWeb = new FormWebBrowser();
             Form1.formWeb.navigate(url);

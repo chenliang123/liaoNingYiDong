@@ -1,0 +1,40 @@
+﻿var vm = new Vue({
+    //指向绑定的element(元素)，之后该实例的属性和方法可以在对应元素内使用
+    el: "#app",
+    // 绑定的数据(即调用的变量)，可以实时监听变化
+    data: {
+        isFold: false,
+        isShowTip:false,
+    },
+    // 定义过滤方法,局部的，也可以定义全局的
+    filters: {
+    },
+    // Vue1.0的ready方法->迁移为mounted
+    mounted: function () {
+        // 根据官方文档添加$nextTick钩子，以保证该vm已被实例加载
+        this.$nextTick(function () {
+            //this.getData();
+        })
+    },
+    // 实例内要用到的所有方法,本地调取json文件失败
+    methods: {
+        getData: function () {
+            this.$http.get("data.json").then(function (res) {
+                //this.shopList = res.data.result.list;
+                alert("获取json成功"+res.data.msg);
+            }, function (res) {
+                alert("获取json失败");
+            });
+        },
+        closeFn: function () {
+            window.external.hideWeb();
+        },
+        foldFn: function () {
+            this.isFold = !this.isFold;
+        },
+        showTipFn: function () {
+            this.isShowTip = !this.isShowTip;
+        }
+
+    }
+});
