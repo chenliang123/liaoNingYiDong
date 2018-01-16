@@ -21,6 +21,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace RueHelper
 {
     public partial class Form1 : Form
@@ -69,6 +71,13 @@ namespace RueHelper
             //ff.Show();
             fController = new FormController();
             fController.Display(false);
+
+            //查看html文件夹是否存在，不存在就解压
+            string dir = Application.StartupPath + "\\html";
+            if (!Directory.Exists(dir))
+            {
+                Common.UnZip(Application.StartupPath + @"\html.zip", Application.StartupPath + @"\html","");
+            }
 
             InitializeComponent();
             //启动初始化接收机

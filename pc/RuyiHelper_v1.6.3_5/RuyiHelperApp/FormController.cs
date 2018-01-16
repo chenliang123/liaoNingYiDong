@@ -133,7 +133,10 @@ namespace RueHelper
 
         private void pictureBox_main_pen_click(object sender, EventArgs e)
         {
-            this.ShowPen();
+            if (!this.panel_pen.Visible)
+            {
+                this.ShowPen();
+            }
         }
         private void pictureBox_main_folder_Click(object sender, EventArgs e)
         {

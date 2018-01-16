@@ -677,3 +677,4 @@ D:\RuyiHelper_v1.6.3_5\RuyiHelperApp\obj\Debug\RueHelper.csproj.GenerateResource
 D:\RuyiHelper_v1.6.3_5\RuyiHelperApp\obj\Debug\如e小助手.exe
 D:\RuyiHelper_v1.6.3_5\RuyiHelperApp\obj\Debug\如e小助手.pdb
 D:\RuyiHelper_v1.6.3_5\RuyiHelperApp\obj\Debug\RueHelper.FormLessonOver.resources
+D:\App\RuyiHelper_v1.6.3_5\RuyiHelperApp\obj\Debug\RueHelper.FormLessonOver.resources

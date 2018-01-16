@@ -14,6 +14,8 @@ using System.Threading;
 using System.Net;
 using System.Windows.Forms;
 using System.Security.Policy;
+using ICSharpCode.SharpZipLib.Zip;
+using ICSharpCode.SharpZipLib.Checksums; 
 
 namespace RueHelper
 {
@@ -30,7 +32,73 @@ namespace RueHelper
         private static string url_class = Global.url_class;
         private static string url_assistant = Global.url_assistant;
         private static string KEY = "ckj75fhd9Jk$";
-       
+
+        #region 解压文件
+        /// <summary>  
+        /// 解压  
+        /// </summary>  
+        /// <param name="args">  
+        //    args[0] = Server.MapPath("ZIP") + "\\f12Zip.zip"; //待解压的文件    
+        //   args[1]=Server.MapPath("UPZIP\\");//解压后放置的目标目录   
+        //  或  
+        //    args[0] =  "D:\\f12Zip.zip"; //待解压的文件    
+        //   args[1]="D:\\UPZIP\\");  //解压后放置的目标目录   
+        //</param>  
+        /// <summary>  
+        /// 解压  
+        /// </summary>  
+        /// <param name="UpZipFile">待解压文件</param>  
+        /// <param name="ZipToFile">解压后放置的目标目录</param>  
+        /// <param name="password">解压密码</param>  
+        public static void UnZip(string UpZipFile, string ZipToFile, string password)
+        {
+            if (!System.IO.File.Exists(UpZipFile))
+            {
+                throw new System.IO.FileNotFoundException("文件 " + UpZipFile + "不存在！");
+            }
+            //创建新的ZIP输入流  
+            ZipInputStream ZipStream = new ZipInputStream(File.OpenRead(UpZipFile));
+            //设置解压密码  
+            ZipStream.Password = password;
+            ZipEntry theEntry;
+            while ((theEntry = ZipStream.GetNextEntry()) != null)
+            {
+                //取得解压后的目录  
+                string directoryName = Path.GetDirectoryName(ZipToFile);
+                //取得解压文件下的文件名   
+                string fileName = Path.GetFileName(theEntry.Name);
+                //取得子目录  
+                string filepath = Path.GetDirectoryName(theEntry.Name);
+                //取得解压文件名  
+                //如 xxxxx.zip  
+                string ZipFile = Path.GetFileName(UpZipFile);
+                //去掉文件名后缀 xxxxx  
+                string zipfile = ZipFile.Split('.')[0];
+                //创建解压后文件目录  
+                string filePath = directoryName + "\\" + zipfile + "\\" + filepath + "\\";
+                Directory.CreateDirectory(filePath);
+                if (fileName != String.Empty)
+                {
+                    //解压文件到指定的目录      
+                    FileStream streamWriter = File.Create(filePath + "\\" + fileName);
+                    int size = 2048;
+                    byte[] data = new byte[2048];
+                    while (true)
+                    {
+                        size = ZipStream.Read(data, 0, data.Length);
+                        if (size > 0)
+                        {
+                            streamWriter.Write(data, 0, size);
+                        }
+                        else { break; }
+                    }
+                    streamWriter.Close();
+                }
+            }
+            ZipStream.Close();
+        }
+        #endregion 解压文件  
+
         #region RuyiHelper--Hardware
         public static string getHDID()
         {
@@ -656,6 +724,8 @@ namespace RueHelper
             }
             return ret;
         }
+
+
 
 
         /// <summary>
