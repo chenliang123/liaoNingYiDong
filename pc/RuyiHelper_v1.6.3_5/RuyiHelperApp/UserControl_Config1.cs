@@ -68,32 +68,11 @@ namespace RueHelper
             }
             
 
-            try
-            {
-                hdip = textBox_hdip.Text;
-                IPAddress ip;
-                if (!IPAddress.TryParse(hdip, out ip))
-                {
-                    MessageBox.Show("采集器IP地址设置错误，请重试！", "警告");
-                    return;
-                }
-            }
-            catch (Exception e) {
-                Log.Info("Config.3 "+ e.Message);
-            }
-            Log.Info("Config.3 hdip=" + hdip);
-
 
             SetAutoRun(true);
             Global.setAutoUpdate(1);
 
             button_apply.Enabled = false;
-
-            {
-                string strHDIP = textBox_hdip.Text;
-                Boolean bAutorun = autorun==1?true:false;
-                Global.saveSchoolConfig(strHDIP, bAutorun);
-            }
 
             //TODO:如果教室ID变化，重新获取相关信息
             if (bReloadClass)
@@ -134,7 +113,6 @@ namespace RueHelper
             //测试采集器
             String url = "http://P1/EduApi/hd.do?action=handon&classid=0";//&callback=CB
             String utctime = getUTC();
-            url = url.Replace("P1", textBox_hdip.Text);
             url = url.Replace("P2", utctime);
 
             String ret = HTTPReq.HttpGet(url, false);
@@ -217,27 +195,6 @@ namespace RueHelper
                 {
                     Global.setClassname(c.name);
                     Global.setClassID(c.id);
-                }
-            }
-            
-            textBox_hdip.Text = Global.getHDIP();
-
-            ////////////////////////////////
-            ArrayList iplist = Util.GetInternalIPList();
-            if (iplist.Count == 1)
-            {
-                textBox_360ip.Text = (string)iplist[0];
-            }
-            else
-            {
-                foreach (string ip in iplist)
-                {
-                    string ip_4 = ip.Substring(ip.LastIndexOf(".") + 1);
-                    if (ip == "172.18.201.3")
-                    {
-                        textBox_360ip.Text = ip;
-                        break;
-                    }
                 }
             }
         }

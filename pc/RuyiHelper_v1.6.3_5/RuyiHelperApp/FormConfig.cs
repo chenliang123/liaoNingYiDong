@@ -25,7 +25,6 @@ namespace RueHelper
         private void FormConfig_Load(object sender, EventArgs e)
         {
             label1.BackColor = Color.White;
-            label2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Clear();
             this.panel2.Controls.Add(config1);
             config1.Show();
@@ -38,7 +37,6 @@ namespace RueHelper
         private void label1_Click(object sender, EventArgs e)
         {
             label1.BackColor = Color.White;
-            label2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Clear();
             this.panel2.Controls.Add(config1);
             config1.Show();
@@ -46,7 +44,6 @@ namespace RueHelper
         private void label2_Click(object sender, EventArgs e)
         {
             label1.BackColor = System.Drawing.SystemColors.Control;
-            label2.BackColor = Color.White;
             this.panel2.Controls.Clear();
             this.panel2.Controls.Add(config2);
             config2.Show();

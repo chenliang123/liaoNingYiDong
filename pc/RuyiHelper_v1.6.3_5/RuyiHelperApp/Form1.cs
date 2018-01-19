@@ -74,10 +74,10 @@ namespace RueHelper
 
             //查看html文件夹是否存在，不存在就解压
             string dir = Application.StartupPath + "\\html";
-            if (!Directory.Exists(dir))
-            {
-                Common.UnZip(Application.StartupPath + @"\html.zip", Application.StartupPath + @"\html","");
-            }
+            //if (!Directory.Exists(dir))
+            //{
+            //    Common.UnZip(Application.StartupPath + @"\html.zip", Application.StartupPath + @"\html", "");
+            //}
 
             InitializeComponent();
             //启动初始化接收机
@@ -165,6 +165,16 @@ namespace RueHelper
             }
             fNotifyToStart = new FormNotifyToStart();
             fNotifyToStart.Show();
+
+            if (!Directory.Exists(dir))
+            {
+                Common.UnZip(Application.StartupPath + @"\html.zip", Application.StartupPath + @"\html", "");
+            }
+            else
+            {
+                System.IO.Directory.Delete(Application.StartupPath + @"\html", true);
+                Common.UnZip(Application.StartupPath + @"\html.zip", Application.StartupPath + @"\html", "");
+            }
 
         }
         public static void ShowController(Boolean show)
@@ -611,7 +621,7 @@ namespace RueHelper
 
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
         {
-            showUSBForm();
+            //showUSBForm();
         }
         public void showUSBForm()
         {

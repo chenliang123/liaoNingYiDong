@@ -14,11 +14,15 @@
         color:#2196F3;
     }
     .wrap>.cont{
+    	position: absolute;
+    	left: 50%;
+    	top: 44%;
+    	transform: translate(-50%,-50%);
     	width: 700px;
 	    /* height: 383px; */
 	    padding: 20px;
 	    border: 2px solid #e4e3e3;
-	    margin: 50px auto;
+	    /*margin: 50px auto;*/
 	    font-size: 18px;
 	    border-radius: 8px;
     }
@@ -87,30 +91,33 @@
     	line-height: 60px;
     	text-align: center;
     	margin-right: 20px;
+    	font-weight: normal;
     }
     footer .start .startBtn{
+    	margin-top: 3px;
     	margin-right: 40px;
     	box-sizing: border-box;
-    	padding-top: 5px;
+    	padding-top: 4px;
     	color: #FFFFFF;
     	display: inline-block;
     	width: 108px;
-    	height: 58px;
-        cursor: pointer;
-        color: #2196F3 ;
-        box-shadow: 0 2px 4px 0 #A5A5A5;
-		border-radius: 8px;
+    	height: 52px;
+    	cursor: pointer;
+    	color: #2196F3;
+    	box-shadow: 0 1px 7px 1px #A5A5A5;
+    	border-radius: 8px;
     }   
     footer .start .startBtn span{
-    	margin-bottom: 3px;
+    	margin-bottom: 0px;
     	display: inline-block;
+    	transform: scale(0.9);
     	width: 24px;
     	height: 24px;
     	background:url(../img/icon_all.png) no-repeat;
     	background-size: contain;
-		font-size: 9px;
-		color: #FFFFFF;
-		line-height: 24px;
+    	font-size: 9px;
+    	color: #FFFFFF;
+    	line-height: 24px;
     }
     footer .start .startBtn:nth-of-type(1) span{
 		width: 28px;
@@ -131,23 +138,28 @@
     footer .start .startBtn h5{
 		text-align: center;
 		font-size: 14px;
-    }
+		font-weight: normal;
+		}
     footer .progress{
     	width: 100%;
     	text-align: center;
     }
     footer .progress div{
-    	margin: 4px 55px;
-    	padding-top: 5px;
+    	margin-top: 3px;
+    	margin-right: 40px;
+    	box-sizing: border-box;
+    	padding-top: 4px;
+    	color: #FFFFFF;
     	display: inline-block;
-    	width: 128px;
-    	height: 47px;
+    	width: 108px;
+    	height: 52px;
     	cursor: pointer;
-		box-shadow: 0 2px 4px 0 #629FFF;
-		border-radius: 8px;
-		text-align: center;
+    	color: #2196F3;
+    	box-shadow: 0 1px 7px 1px #A5A5A5;
+    	border-radius: 8px;
     }
     footer .progress div img{
+    	transform: scale(0.9);
     	width: 24px;
     	height: 24px;
     }
@@ -271,7 +283,7 @@
     	top:50%;
     	transform: translate(-50%,-50%);
     	overflow: hidden;
-    	width: 644px;
+    	width: 664px;
     	/*height: 302px;*/
     	background: #FFFFFF;
     	box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
@@ -297,16 +309,29 @@
     }
     .all_infor section div{
     	float: left;
+    	height: 290px;
+    	box-sizing: border-box;
+    	border-bottom: 10px;
     }
     .all_infor section .left,.all_infor section .right{
-    	width: 320px;
+    	width: 331px;
+    	box-sizing: border-box;
+    	/* text-align: center; */
     	padding-top: 10px;
+    	padding-left: 14px;
     	font-size: 14px;
     	color: #4A4A4A;
-    	overflow: hidden;
+    	overflow-y: auto;
     }
     .all_infor section .left span,.all_infor section .right span{
+    	display: inline-block;
+    	text-align: left;
+    	width: 56px;
+    	height: 16px;
+    	overflow: hidden;
     	margin: 10px;
+    	margin-right: 9px;
+    	margin-bottom: 14px;
     	float: left;
     	line-height: 15px;
     	/* height: 20px; */
@@ -602,7 +627,7 @@
 		border: 1px solid white;
 	}
 	.groupAnswer .start:after{
-		content: "开始答题";
+		content: "å¼€å§‹ç­”é¢˜";
 	}
 	.groupAnswer .unableActive{
 		background-color: #cccccc;
@@ -610,14 +635,14 @@
 		border: none;
 	}
 	.groupAnswer .unableActive:after{
-		content: "开始答题";
+		content: "å¼€å§‹ç­”é¢˜";
 	}
 	.groupAnswer .startActive{
 		color: red;
 		border: 1px solid red;
 	}
 	.groupAnswer .startActive:after{
-		content: "结束答题 ";
+		content: "ç»“æŸç­”é¢˜ ";
 	}
 	.groupAnswer .stopAnswerActive{
 		color: #FFFFFF;
@@ -625,7 +650,7 @@
 		background: red;
 	}
 	.groupAnswer .stopAnswerActive:after{
-		content: "结束答题";
+		content: "ç»“æŸç­”é¢˜";
 	}
 	.groupAnswer .isGroupCountActive{
 		background: #2196F3;
@@ -675,7 +700,7 @@
     	/*background: #4A4A4A;*/
     	position: absolute;
     	left:50%;
-    	bottom: 90px;
+    	top: 90px;
     	transform:translateX(-50%);
     }
     .groupMember header{
@@ -686,7 +711,10 @@
     	height: 18px;
     	line-height: 18px;
     }
-    .groupMember ul{		overflow-y: scroll;		height: 468px;		width: 104%;
+    .groupMember ul{
+		overflow-y: scroll;
+		height: 468px;
+		width: 104%;
     }
     .groupMember ul li{
     	background: #F2F2F2;
@@ -857,7 +885,7 @@
 		width: 160px;
 		height: 211px;
 		margin: 50px 29px 0;
-		box-shadow: 0 4px 12px 0 rgba(0,0,0,0.50);
+		box-shadow: 0 0px 15px 1px rgba(0,0,0,0.30);
 		border-radius: 8px;
 		overflow: hidden;
 	}
@@ -890,7 +918,8 @@
 	.groupRank .cont li .item .score{
 		position: absolute;
 		top:38px;
-		left: 64px;
+		left: 43px;
+    	width: 74px;
 		color: #FFFFFF;
 		text-align: center;
 	}
@@ -951,7 +980,7 @@
 		border: 1px solid #2196F3;
 	}
 	.random .start:after{
-		content: "随机点名";
+		content: "éšæœºç‚¹å";
 	}
 	.random .isStart{
 		color: white;
@@ -981,7 +1010,7 @@
 		height: 100%;
 	}
 	.random_result header{
-		margin-top: 90px;
+		margin-top: 60px;
 		text-align: center;
 		font-size: 24px;
 		color: #3C3C3C;
@@ -990,7 +1019,7 @@
 		position: relative;
 		width: 572px;
 		height: 286px;
-		margin: 90px auto;
+		margin: 60px auto;
 		/*margin: 0 auto;*/
 		text-align: center;
 		line-height: 286px;
@@ -1030,7 +1059,7 @@
 	.random_result .cont .randomResult .reward{
 		position: absolute;
 	    left: 50%;
-	    transform: translateX(-50%);
+	    transform: translateX(-38%);
 	    bottom: -83px;
 	    padding-left: 46px;
 	    height: 60px;
@@ -1053,15 +1082,16 @@
 		display: inline-block;
 		width: 58px;
 		height: 56px;
+		transform: scale(0.7);
 		background: url(../img/star_grey.png) no-repeat;
-		margin: 0 12px;
+		margin: 0 1px;
 		cursor: pointer;
 	}
 	.random_result .cont .randomResult .reward .light{
 		background:url(../img/star.png) no-repeat;
 	}
 	.vie .start:after{
-		content: "继续抢答";
+		content: "ç»§ç»­æŠ¢ç­”";
 	}
 	.mulTopic{
 		position: absolute;

@@ -87,6 +87,11 @@ namespace RueHelper
         {
             this.Show();
         }
+        public void setShow()
+        {
+           //this.webBrowser1.Document.GetElementsByTagName("body")[0].SetAttribute("width","400px");
+           this.webBrowser1.Width = 600;
+        }
         public void hideWeb()
         {
             int temp = extiAnswer();

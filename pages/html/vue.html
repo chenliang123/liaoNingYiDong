@@ -27,7 +27,7 @@
                 <div class="pre"  v-show="!isAll && !isGroup && !Random && !isVie && !isMulPanel && !isMulAnswer" @click="select(-1)"></div>
                 <div class="next" v-show="!isAll && !isGroup && !Random && !isVie && !isMulPanel && !isMulAnswer" @click="select(1)"></div>
                 <div class="collect" v-show="isAll || isGroup || Random || isVie" @click="homeFn()"></div>
-                <div class="start" v-show="!isAll && !isGroup && !Random && !isVie">
+                <div class="start" v-show="isShowControll && !isAll && !isGroup && !Random && !isVie">
                 	<h4>请选择答题方式</h4>             	
                 	<div class="startBtn" @click="allAnswerFn()">
                 		<span></span>
@@ -97,7 +97,6 @@
             		<div class="line"></div>
             		<div class="right">
             			<span v-for="item in noAnswerList">{{item.name}}</span>
-            			<!--<span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span><span>王明</span>-->
             		</div>
             	</section>
             	<span class="close" @click="panelCloseFn()">X</span>
@@ -240,7 +239,7 @@
             		<!--<li>
             			<div class="item">
             				<div class="groupNum"><span>1组</span></div>
-            				<div class="score">13分</div>
+            				<div class="score">3分</div>
             				<div class="answer">AB</div>
             				<div class="name">张小白</div>
             			</div>

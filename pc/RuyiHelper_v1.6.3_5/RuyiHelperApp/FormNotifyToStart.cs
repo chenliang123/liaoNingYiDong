@@ -41,8 +41,6 @@ namespace RueHelper
             string data = DateTime.Now.ToString("yyyyMMddHHmmss");
             string url = "http://221.179.197.232/Sso/login?appid=ca1b0dbcf9&callback_uri=http://127.0.0.1:8986/loginSuccess&clientid=" + data;
             Form1.formWeb = new FormWebBrowser();
-             //Form1.formWeb.
-            //Form1.formWeb.Document.body.width = "740px";
             Form1.formWeb.navigate(url);
             this.Hide();
 

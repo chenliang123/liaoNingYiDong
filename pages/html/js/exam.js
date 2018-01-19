@@ -28,6 +28,11 @@ var vm = new Vue({
     el: "#app",
     // 绑定的数据(即调用的变量)，可以实时监听变化
     data: {
+    	schoolid:"",
+    	teacherid:"",
+    	classid:"",
+    	courseid:"",
+    	lessonid:"",
     	appId:'vke8u7u7y3',
 	  	accesstoken:'RmHQtUNz+D1xaC1YuQZV2h3xN7PKK3UHQ8wak3KoNLs=',
 	  	httpStr:'http://api.kuaxue.com',
@@ -145,7 +150,15 @@ var vm = new Vue({
     // Vue1.0的ready方法->迁移为mounted
     mounted: function () {
         // 根据官方文档添加$nextTick钩子，以保证该vm已被实例加载
-        this.$nextTick(function () {        	  
+        this.$nextTick(function () { 
+        	  var infor = window.external.getInfor();
+        	  var inforArr = infor.split(",");
+        	  this.schoolid = inforArr[0];
+        	  this.teacherid = inforArr[1];
+        	  this.classid = inforArr[2];
+        	  this.courseid = inforArr[3];
+        	  this.lessonid = inforArr[4];
+        	
         	  this.mulConfirm = true;
               this.getData();
 //            this.stuList = window.external.getList();
@@ -421,7 +434,7 @@ var vm = new Vue({
 		  			this.current = p;
 		    },
         getData: function () {
-            this.$http.get("http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=getTeacherQuestionList").then(function (res) {
+            this.$http.get("http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=getTeacherQuestionList&teacherid="+ this.teacherid +"&courseid="+ this.courseid +"&dayfrom=0$deayto=0&callback").then(function (res) {
             	this.mulTopicData = res.body.data;
             	this.isQuize = true;
             }, function (res) {

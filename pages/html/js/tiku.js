@@ -176,6 +176,13 @@ var vm = new Vue({
 //      	  	console.log(res)
 //      	  });
         	  
+        	  var infor = window.external.getInfor();
+        	  var inforArr = infor.split(",");
+        	  this.schoolid = inforArr[0];
+        	  this.teacherid = inforArr[1];
+        	  this.classid = inforArr[2];
+        	  this.courseid = inforArr[3];
+        	  this.lessonid = inforArr[4];
         	  
         	  this.mulConfirm = true;
               this.getData();
@@ -241,15 +248,7 @@ var vm = new Vue({
 	  					that.currentID = that.treeData[0].id;
 	  				});
 	  			});	
-              
-              var infor = window.external.getInfor();
-        	  var inforArr = infor.split(",");
-        	  this.schoolid = inforArr[0];
-        	  this.teacherid = inforArr[1];
-        	  this.classid = inforArr[2];
-        	  this.courseid = inforArr[3];
-        	  this.lessonid = inforArr[4];
-              
+ 
 //            _this = this;
 //            this.askTimer = setInterval(function(){
 //            	_this.answerStuLists =window.external.getAnswerList();
@@ -524,7 +523,7 @@ var vm = new Vue({
 		  			this.current = p;
 		    },
         getData: function () {
-            this.$http.get("http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=getGroupResult&teacherid=7940&classid=1878&callback").then(function (res) {
+            this.$http.get("http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=getGroupResult&teacherid="+ this.teacherid +"&classid="+ this.classid +"&callback").then(function (res) {
             	this.groupData = res.body.data;
             	for(var item in this.groupData){
               		this.groupData[item].member.forEach(function(val,index,arr){
@@ -882,8 +881,8 @@ var vm = new Vue({
         	this.allParse = false;
         	this.isStopAnswer = false;
 //      	this.Rank = false;
-        	this.randomRusult = false;
-        	this.randomStuName = false;
+//      	this.randomRusult = false;
+//      	this.randomStuName = false;
 //      	this.inVie = false;
 //      	this.isVied = false;
         	this.isMulCount = false;
@@ -1326,7 +1325,7 @@ var vm = new Vue({
 //				this.initFn();
 //				clearInterval(this.askTimer);
 //			};
-			this.$http.get("http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=getTeacherFavoriteList&teacherid=7940&classid=1878&callback").then(function (res) {
+			this.$http.get("http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=getTeacherFavoriteList&teacherid="+ this.teacherid +"&classid="+ this.classid +"&callback").then(function (res) {
 				var _this = this;
 				this.topicData = JSON.parse(res.bodyText);
 				this.topicData = this.topicData.data.testids;

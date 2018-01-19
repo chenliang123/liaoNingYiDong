@@ -90,6 +90,7 @@ Section "主程序" SEC01
   Delete "$INSTDIR\Update.exe.config"
   Delete "$INSTDIR\RueSqlite.db"
   Delete "$INSTDIR\update.ini"
+  
 
   File "..\如e小助手_Release\update.ini"
   File "..\如e小助手_Release\RueUpdate.exe"
@@ -284,9 +285,9 @@ Section Uninstall
   Delete "$SMPROGRAMS\如e小助手\如e小助手.lnk"
   
   Delete "$SMPROGRAMS\如e小助手\html.zip"
-  RMDir "$SMPROGRAMS\如e小助手\html"
+  RMDir /r "$SMPROGRAMS\如e小助手\html"
   
-  RMDir "$SMPROGRAMS\如e小助手\conf"
+  RMDir  "$SMPROGRAMS\如e小助手\conf"
 ; 清除安装程序创建的且在卸载时可能为空的子目录，对于递归添加的文件目录，请由最内层的子目录开始清除(注意，不要带 /r 参数，否则会失去 DelFileByLog 的意义)
 ;  RMDir "$SMPROGRAMS\如e小助手"
 ;  RMDir "$INSTDIR"

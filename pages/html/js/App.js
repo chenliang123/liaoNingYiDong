@@ -3,6 +3,7 @@
     el: "#app",
     // 绑定的数据(即调用的变量)，可以实时监听变化
     data: {
+    	isShowControll:false,
     	schoolid:"",
     	teacherid:"",
     	classid:"",
@@ -71,6 +72,15 @@
         topicData:[],                     //开始题的数据管理
         topicCurrent:{},
     },
+//  computed:{
+//  	isShowControll:function(){
+//  		if(this.topicCurrent.type == "单选题" || (this.topicCurrent.type == "判断题" && this.topicCurrent.answer == "R" || "W" )){
+//  			return true;
+//  		}else{
+//  			return false;
+//  		}
+//  	}
+//  },
     watch:{
 //  	groupData:function(value){
 //  		var num = 0;
@@ -181,13 +191,25 @@
 				this.topicData = JSON.parse(res.bodyText);
 				this.topicData = this.topicData.data.testids;
 				this.topicData = this.topicData.split(",");
-				console.log(this.topicData)
 				this.tiNumAll = this.topicData.length;
 				if(this.tiNumAll > 0){
 					this.getById(this.topicData[0],function(data){
 						data = JSON.parse(data.bodyText);
 						data = data.datalist[0];
 						_this.topicCurrent = data;
+						if(_this.topicCurrent.type == "判断题"){
+							if(_this.topicCurrent.answer == "<div>【答案】错</div>"){
+								_this.topicCurrent.answer = "W";
+							}else if(_this.topicCurrent.answer == "<div>【答案】对</div>"){
+								_this.topicCurrent.answer = "R";
+							}
+						}
+						
+						if(_this.topicCurrent.type == "单选题" || (_this.topicCurrent.type == "判断题" && (_this.topicCurrent.answer == "W" || _this.topicCurrent.answer == "R") )){
+			    			_this.isShowControll = true;
+			    		}else{
+			    			_this.isShowControll = false;
+			    		}					
 					});
 //					this.topicCurrent = this.topicData[0];
 				};
@@ -317,6 +339,20 @@
 						data = JSON.parse(data.bodyText);
 						data = data.datalist[0];
 						_this.topicCurrent = data;
+						if(_this.topicCurrent.type == "判断题"){
+							if(_this.topicCurrent.answer == "<div>【答案】错</div>"){
+								_this.topicCurrent.answer = "W";
+							}else if(_this.topicCurrent.answer == "<div>【答案】对</div>"){
+								_this.topicCurrent.answer = "R";
+							}
+						}
+						
+						if(_this.topicCurrent.type == "单选题" || (_this.topicCurrent.type == "判断题" && (_this.topicCurrent.answer == "W" || _this.topicCurrent.answer == "R") )){
+			    			_this.isShowControll = true;
+			    		}else{
+			    			_this.isShowControll = false;
+			    		}
+						
 					});
         		}
         	}else{
@@ -328,6 +364,20 @@
 						data = JSON.parse(data.bodyText);
 						data = data.datalist[0];
 						_this.topicCurrent = data;
+						if(_this.topicCurrent.type == "判断题"){
+							if(_this.topicCurrent.answer == "<div>【答案】错</div>"){
+								_this.topicCurrent.answer = "W";
+							}else if(_this.topicCurrent.answer == "<div>【答案】对</div>"){
+								_this.topicCurrent.answer = "R";
+							}
+						}
+						
+						if(_this.topicCurrent.type == "单选题" || (_this.topicCurrent.type == "判断题" && (_this.topicCurrent.answer == "W" || _this.topicCurrent.answer == "R") )){
+			    			_this.isShowControll = true;
+			    		}else{
+			    			_this.isShowControll = false;
+			    		}
+						
 					});
         		}
         	};
@@ -533,8 +583,8 @@
         	this.allParse = false;
         	this.isStopAnswer = false;
 //      	this.Rank = false;
-        	this.randomRusult = false;
-        	this.randomStuName = false;
+//      	this.randomRusult = false;
+//      	this.randomStuName = false;
 //      	this.inVie = false;
 //      	this.isVied = false;
         	this.isMulCount = false;
@@ -971,7 +1021,7 @@
 //				this.initFn();
 //				clearInterval(this.askTimer);
 //			};
-			this.$http.get("http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=getTeacherFavoriteList&teacherid=7940&classid=1878&callback").then(function (res) {
+			this.$http.get("http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=getTeacherFavoriteList&teacherid="+ this.teacherid +"&classid="+ this.classid +"&callback").then(function (res) {
 				var _this = this;
 				this.topicData = JSON.parse(res.bodyText);
 				this.topicData = this.topicData.data.testids;

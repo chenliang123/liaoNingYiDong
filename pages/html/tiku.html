@@ -16,7 +16,7 @@
 			.top{
 				width: 1150px;
 				padding: 10px;
-				margin: 10px auto;
+				margin: 38px auto;
 				height: auto;
 			    overflow: hidden;
 			    margin-bottom: 15px;
@@ -27,8 +27,9 @@
 			.top h5{
 				float: left;
 				padding: 0px;
+				font-weight: bold;
 				line-height: 30px;
-				color: #0068b7;
+				color: #2196F3;
 			}
 			.top span{
 				float: left;
@@ -37,7 +38,7 @@
 				cursor: pointer;
 			}
 			.top .active{
-				background: #0068b7;
+				background: #2196F3;
 				color: #FFFFFF;
 			}
 			.content{
@@ -53,22 +54,27 @@
 			.content p{
 				width: 1000px;
 			}
-			.content .contBody{width: 1000px;padding: 15px;}
-			.content>div{position: relative;border-bottom: 1px dashed black;min-height: 100px;}
+			.content .contBody{width: 1000px;padding: 15px;line-height: 30px;}
+			.content .contBody>:first-child{font-weight: bold !important;}
+			.content>div{position: relative;border-bottom: 1px dashed rgba(0,0,0,0.5);min-height: 100px;}
 			.content>div>.start{
 				position: absolute;
-				top:10px;
+				top:20px;
 				right: 15px;
 				width: 50px;
 				height: 30px;
 				text-align: center;
 				line-height: 30px;
-				background: #0068b7;
+				background: #2196F3;
 				color: #FFFFFF;
 				border-radius: 5px;
 				cursor: pointer;
 			}
     		.topicCont{
+    			position: absolute;
+		    	left: 50%;
+		    	top: 40%;
+		    	transform: translate(-50%,-50%);
     			width: 700px;
 			    padding: 20px;
 			    border: 2px solid #e4e3e3;
@@ -136,7 +142,7 @@
                 		<h5>抢答</h5>
                 	</div>
                 </div>
-                <div class="myProgress" v-show="isAll && !allCount">
+                <div class="progress" v-show="isAll && !allCount">
                 	<div class="look" @click="allInforFn()">
                 		<img src="img/look.png" alt="" />
                 		<span>作答进度({{answerStuNum}}/{{stuListNum}})</span>
@@ -146,7 +152,7 @@
                 		<span>结束答题</span>
                 	</div>
                 </div>
-                <div class="myProgress" v-show="isGroup && groupStart && !Rank">
+                <div class="progress" v-show="isGroup && groupStart && !Rank">
                 	<div class="look" @click="groupStartFn()">
                 		<img src="img/look.png" alt="" />
                 		<span>作答进度({{selectAnswered.length}}/{{selectData.length}})</span>

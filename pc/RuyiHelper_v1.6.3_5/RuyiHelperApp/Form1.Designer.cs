@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,21 +61,12 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem4,
             this.toolStripMenuItem3,
             this.toolStripMenuItem5,
             this.toolStripMenuItem1,
             this.toolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 136);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Image = global::RueHelper.Properties.Resources.add_24;
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem4.Text = "导入课件";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
             // 
             // toolStripMenuItem3
             // 
@@ -88,13 +78,6 @@
             // 
             // toolStripMenuItem5
             // 
-            //this.toolStripMenuItem5.Image = global::RueHelper.Properties.Resources.codeLogo;
-            //this.toolStripMenuItem5.ImageTransparentColor = System.Drawing.Color.Transparent;
-            //this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            //this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
-            //this.toolStripMenuItem5.Text = "二维码";
-            //this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
-
             this.toolStripMenuItem5.Image = global::RueHelper.Properties.Resources.codeLogo;
             this.toolStripMenuItem5.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
@@ -238,7 +221,6 @@
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.Timer timer_lessonOff;
         private System.Windows.Forms.PictureBox pictureBox1;
