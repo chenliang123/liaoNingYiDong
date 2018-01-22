@@ -27,6 +27,7 @@
                 <div class="pre"  v-show="!isAll && !isGroup && !Random && !isVie && !isMulPanel && !isMulAnswer" @click="select(-1)"></div>
                 <div class="next" v-show="!isAll && !isGroup && !Random && !isVie && !isMulPanel && !isMulAnswer" @click="select(1)"></div>
                 <div class="collect" v-show="isAll || isGroup || Random || isVie" @click="homeFn()"></div>
+                <div class="default" v-show="!isShowControll">该题暂不支持答题卡做题</div>
                 <div class="start" v-show="isShowControll && !isAll && !isGroup && !Random && !isVie">
                 	<h4>请选择答题方式</h4>             	
                 	<div class="startBtn" @click="allAnswerFn()">

@@ -202,6 +202,14 @@
 								_this.topicCurrent.answer = "W";
 							}else if(_this.topicCurrent.answer == "<div>【答案】对</div>"){
 								_this.topicCurrent.answer = "R";
+							}else if(_this.topicCurrent.answer == "<div>【答案】√</div>"){
+								_this.topicCurrent.answer = "R";
+							}else if(_this.topicCurrent.answer == "<div>【答案】对X</div>"){
+								_this.topicCurrent.answer = "W";
+							}else if(_this.topicCurrent.answer.indexOf("<TR><TD>正确</TD>") > 0 ){
+								_this.topicCurrent.answer = "R";
+							}else if(_this.topicCurrent.answer.indexOf("<TR><TD>错误</TD>") > 0){
+								_this.topicCurrent.answer = "W";
 							}
 						}
 						
@@ -344,6 +352,14 @@
 								_this.topicCurrent.answer = "W";
 							}else if(_this.topicCurrent.answer == "<div>【答案】对</div>"){
 								_this.topicCurrent.answer = "R";
+							}else if(_this.topicCurrent.answer == "<div>【答案】√</div>"){
+								_this.topicCurrent.answer = "R";
+							}else if(_this.topicCurrent.answer == "<div>【答案】对X</div>"){
+								_this.topicCurrent.answer = "W";
+							}else if(_this.topicCurrent.answer.indexOf("<TR><TD>正确</TD>") > 0 ){
+								_this.topicCurrent.answer = "R";
+							}else if(_this.topicCurrent.answer.indexOf("<TR><TD>错误</TD>") > 0){
+								_this.topicCurrent.answer = "W";
 							}
 						}
 						
@@ -369,6 +385,14 @@
 								_this.topicCurrent.answer = "W";
 							}else if(_this.topicCurrent.answer == "<div>【答案】对</div>"){
 								_this.topicCurrent.answer = "R";
+							}else if(_this.topicCurrent.answer == "<div>【答案】√</div>"){
+								_this.topicCurrent.answer = "R";
+							}else if(_this.topicCurrent.answer == "<div>【答案】对X</div>"){
+								_this.topicCurrent.answer = "W";
+							}else if(_this.topicCurrent.answer.indexOf("<TR><TD>正确</TD>") > 0 ){
+								_this.topicCurrent.answer = "R";
+							}else if(_this.topicCurrent.answer.indexOf("<TR><TD>错误</TD>") > 0){
+								_this.topicCurrent.answer = "W";
 							}
 						}
 						
