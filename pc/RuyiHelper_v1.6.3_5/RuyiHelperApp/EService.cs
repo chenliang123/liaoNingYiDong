@@ -58,6 +58,7 @@ namespace RueHelper
         FormGroupCallname fGroupCallname;
         FormSummary fSummay;
         FormDraw fRobotPen;
+        public static FormNotify fNotify;
         private static FormSelectTeacher fSelectTeacher;
         int screenWidth = Screen.PrimaryScreen.Bounds.Width;
         int screenHeight = Screen.PrimaryScreen.Bounds.Height;
@@ -3538,6 +3539,17 @@ namespace RueHelper
             {
                 Form1.formWeb.Hide();
             }
+
+            if (Form1.fNotify == null)
+            {
+                Form1.fNotify = new FormNotify();
+                Form1.fNotify.Hide();
+            }
+            else
+            {
+                Form1.fNotify.Hide();
+            }	
+
             string strData = Common.verifyTheTeacher(uid);
             if (strData.Length > 0)
             {

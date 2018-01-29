@@ -994,6 +994,7 @@
     <None Include="Resources\controller\controller_myCollect.png" />
     <None Include="Resources\controller\controller_myExam.png" />
     <None Include="Resources\lessonover.png" />
+    <None Include="Resources\controller\exit.png" />
     <Content Include="Resources\myCode.jpg" />
     <Content Include="Resources\myLogo.jpg" />
     <None Include="Resources\voteF_top.png" />

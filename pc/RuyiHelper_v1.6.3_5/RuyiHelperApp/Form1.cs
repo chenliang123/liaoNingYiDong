@@ -46,7 +46,6 @@ namespace RueHelper
 
         MovingDisk mdisk = new MovingDisk();
         public static Form12 f12;
-        public static FormNotify fNotify;
         public static FormNotifyToStart fNotifyToStart;
         public static FormConfig fConfig;
         public static bool bFormNotifyClosed;
@@ -65,6 +64,7 @@ namespace RueHelper
 
         public static FormController fController;
         public static FormWebBrowser formWeb;
+        public static FormNotify fNotify;
         public Form1()
         {
             //Form_xiti1 ff = new Form_xiti1();
@@ -388,31 +388,6 @@ namespace RueHelper
                 classname = "公共教室";
             }
             string title = Global.getSchoolname() + " - " + classname + "";
-            if (fNotify != null)
-            {
-                if (bHide == 1)
-                {
-                    fNotify.Hide();
-                }
-                else
-                {
-                    fNotify.updateForm(title, msg);
-                    if (!FormNotify.m_PPTImgExporting)
-                    {
-                        fNotify.Show();
-                    }
-                }
-            }
-            else
-            {
-                fNotify = new FormNotify(title, msg, seconds);
-                if (!FormNotify.m_PPTImgExporting)
-                {
-                    fNotify.Show();
-                }
-            }
-
-
         }
         private void DelStrList(string value,List<string> removelist)
         {
@@ -780,15 +755,7 @@ namespace RueHelper
             }
             catch (Exception e) { Log.Error(e.Message); }
 
-            try
-            {
-                if (fNotify != null)
-                {
-                    fNotify.Close();
-                    fNotify = null;
-                }
-            }
-            catch (Exception e) { Log.Error(e.Message); }
+           
 
             try
             {
@@ -1092,14 +1059,7 @@ namespace RueHelper
                 fConfig = null;
             }
         }
-        public static void closeFormNotify()
-        {
-            if (fNotify != null)
-            {
-                bFormNotifyClosed = true;
-                fNotify = null;
-            }
-        }
+      
 
         private string GetAssembly(Type type)
         {

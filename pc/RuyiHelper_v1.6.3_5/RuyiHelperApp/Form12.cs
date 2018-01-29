@@ -61,11 +61,7 @@ namespace RueHelper
             InitializeComponent();
             UpdateForm(strList, bShow);
         }
-        public void showForm(object sender, EventArgs e)
-        {
-            fNotify = sender as FormNotify;
-            fNotify.Show();
-        }
+      
 
         public void Clear()
         {
@@ -256,13 +252,7 @@ namespace RueHelper
                 try
                 {
                     string title = Global.getSchoolname() + " - " + Global.getClassname() + "";
-                    if (bNotify)
-                    {
-                        if (fNotify==null)
-                            fNotify = new FormNotify(title, "\r\n 课件导入中，请稍后！", 30);
-                        this.Invoke(new System.EventHandler(this.showForm), new object[] { fNotify, null });
-                        fNotify.InvokeUpdate(title, "\r\n 课件导入中，请稍后！");
-                    }
+                   
                     
                     for (int i = 0; i < autoAddedFileList.Count; i++)
                     {
@@ -280,26 +270,11 @@ namespace RueHelper
                     bExporting = false;
                     if (bNotify && fNotify!=null)
                     {
-                        fNotify.InvokeUpdate(title, "\r\n 课件导入完毕！");
                         Thread.Sleep(5000);
-                        fNotify.InvokeClose();
-                        fNotify = null;
                     }
                 }catch(Exception e1){
                     Log.Error("Err!!! " + e1.Message);
                     bExporting = false;
-                    try
-                    {
-                        if (fNotify != null)
-                        {
-                            fNotify.InvokeClose();
-                            fNotify = null;
-                        }
-                    }
-                    catch (Exception e2)
-                    {
-                        Log.Error("Err!!! " + e2.Message);
-                    }
                 }
 
             });

@@ -14,6 +14,7 @@ namespace RueHelper
 {
     public partial class FormNotifyToStart : Form
     {
+        public static FormNotify fNotify;
         private static log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public FormNotifyToStart()//string title, string msg, int seconds
         {
@@ -44,6 +45,16 @@ namespace RueHelper
             Form1.formWeb.navigate(url);
             this.Hide();
 
+            if (Form1.fNotify == null)
+            {
+                Form1.fNotify = new FormNotify();
+                Form1.fNotify.Show();
+            }
+            else
+            {
+                Form1.fNotify.Show();
+            }
+            
             //Form1.fController.AllShow();
         }
 
