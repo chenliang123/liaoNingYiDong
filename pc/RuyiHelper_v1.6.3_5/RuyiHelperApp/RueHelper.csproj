@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RueHelper</RootNamespace>
-    <AssemblyName>如e小助手</AssemblyName>
+    <AssemblyName>互动课堂</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
@@ -78,7 +78,7 @@
     <ManifestKeyFile>RueHelper_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ico32X32.ico</ApplicationIcon>
+    <ApplicationIcon>ico48.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -680,6 +680,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\www.ico32X32.ico" />
     <None Include="update.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -903,12 +904,15 @@
     <None Include="Resources\logoicon.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\www.ico32X32.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="flash.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ico128X128.ico" />
+    <Content Include="ico256X256.ico" />
+    <Content Include="ico32.ico" />
+    <Content Include="ico32X32 - 副本.ico" />
+    <Content Include="ico48.ico" />
+    <Content Include="ico64X64.ico" />
     <Content Include="music.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -995,6 +999,7 @@
     <None Include="Resources\controller\controller_myExam.png" />
     <None Include="Resources\lessonover.png" />
     <None Include="Resources\controller\exit.png" />
+    <None Include="Resources\about_ad.png" />
     <Content Include="Resources\myCode.jpg" />
     <Content Include="Resources\myLogo.jpg" />
     <None Include="Resources\voteF_top.png" />

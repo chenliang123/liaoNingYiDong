@@ -98,6 +98,7 @@ namespace RueHelper
             if (temp >= 0)
             {
                 this.Hide();
+                Form1.ShowController(true);
             }
         }
         public int extiAnswer()

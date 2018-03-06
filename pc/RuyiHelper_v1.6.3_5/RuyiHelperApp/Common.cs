@@ -987,7 +987,7 @@ namespace RueHelper
                 return fileName;
             }
         }
-
+        
         // 根据移动登录后返回的uid获取老师信息
         public static string verifyTheTeacher(string uid)
         {

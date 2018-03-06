@@ -30,7 +30,6 @@ namespace RueHelper
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormController));
-            this.pictureBox_main_pen = new System.Windows.Forms.PictureBox();
             this.pictureBox_main_folder = new System.Windows.Forms.PictureBox();
             this.pictureBox_main_xitis = new System.Windows.Forms.PictureBox();
             this.pictureBox_main_lessonover = new System.Windows.Forms.PictureBox();
@@ -40,7 +39,7 @@ namespace RueHelper
             this.panel_xiti = new System.Windows.Forms.Panel();
             this.pictureBox_main_exam = new System.Windows.Forms.PictureBox();
             this.pictureBox_main_collect = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_pen)).BeginInit();
+            this.pictureBox_main_pen = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_folder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_xitis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_lessonover)).BeginInit();
@@ -48,18 +47,8 @@ namespace RueHelper
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_return)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_exam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_collect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_pen)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox_main_pen
-            // 
-            this.pictureBox_main_pen.BackgroundImage = global::RueHelper.Properties.Resources.controller_pen;
-            this.pictureBox_main_pen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox_main_pen.Location = new System.Drawing.Point(18, 0);
-            this.pictureBox_main_pen.Name = "pictureBox_main_pen";
-            this.pictureBox_main_pen.Size = new System.Drawing.Size(79, 62);
-            this.pictureBox_main_pen.TabIndex = 0;
-            this.pictureBox_main_pen.TabStop = false;
-            this.pictureBox_main_pen.Click += new System.EventHandler(this.pictureBox_main_pen_click);
             // 
             // pictureBox_main_folder
             // 
@@ -153,6 +142,17 @@ namespace RueHelper
             this.pictureBox_main_collect.TabStop = false;
             this.pictureBox_main_collect.Click += new System.EventHandler(this.pictureBox_main_collect_Click);
             // 
+            // pictureBox_main_pen
+            // 
+            this.pictureBox_main_pen.BackgroundImage = global::RueHelper.Properties.Resources.controller_pen;
+            this.pictureBox_main_pen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox_main_pen.Location = new System.Drawing.Point(18, 0);
+            this.pictureBox_main_pen.Name = "pictureBox_main_pen";
+            this.pictureBox_main_pen.Size = new System.Drawing.Size(79, 62);
+            this.pictureBox_main_pen.TabIndex = 0;
+            this.pictureBox_main_pen.TabStop = false;
+            this.pictureBox_main_pen.Click += new System.EventHandler(this.pictureBox_main_pen_click);
+            // 
             // FormController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -176,8 +176,7 @@ namespace RueHelper
             this.SkinSize = new System.Drawing.Size(625, 82);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRue";
-
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_pen)).EndInit();
+            this.Load += new System.EventHandler(this.FormController_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_folder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_xitis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_lessonover)).EndInit();
@@ -185,13 +184,13 @@ namespace RueHelper
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_return)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_exam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_collect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_main_pen)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox_main_pen;
         private System.Windows.Forms.PictureBox pictureBox_main_folder;
         private System.Windows.Forms.PictureBox pictureBox_main_xitis;
         private System.Windows.Forms.PictureBox pictureBox_main_lessonover;
@@ -202,5 +201,6 @@ namespace RueHelper
         private System.Windows.Forms.Panel panel_xiti;
         private System.Windows.Forms.PictureBox pictureBox_main_exam;
         private System.Windows.Forms.PictureBox pictureBox_main_collect;
+        private System.Windows.Forms.PictureBox pictureBox_main_pen;
     }
 }

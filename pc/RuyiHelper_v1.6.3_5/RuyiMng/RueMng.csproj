@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ico48.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Interop.Acrobat">
       <HintPath>..\RuyiHelperApp\dll\Interop.Acrobat.dll</HintPath>
@@ -66,6 +69,11 @@
     <Compile Include="util\CmdArg.cs" />
     <Compile Include="util\HTTPReq.cs" />
     <Compile Include="util\Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ico256X256.ico" />
+    <Content Include="ico32.ico" />
+    <Content Include="ico48.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

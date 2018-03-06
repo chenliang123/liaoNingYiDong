@@ -38,9 +38,9 @@ namespace RueHelper
 
             Log.Info("Add NetFWPolicy...");
             //添加防火墙例外策略
-            NetFwAddApps("如e小助手_APP", Application.ExecutablePath);
-            NetFwAddPorts("如e小助手_8986", 8986, "TCP");
-            NetFwAddPorts("如e小助手_8989", 8989, "TCP");
+            NetFwAddApps("互动课堂_APP", Application.ExecutablePath);
+            NetFwAddPorts("互动课堂_8986", 8986, "TCP");
+            NetFwAddPorts("互动课堂_8989", 8989, "TCP");
 
 
             //TODO:弹出配置页面

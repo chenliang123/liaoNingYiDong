@@ -189,7 +189,7 @@ namespace RueHelper.util
                 Type.GetTypeFromProgID("HNetCfg.FwAuthorizedApplication"));
 
             //在例外列表里，程序显示的名称
-            app.Name = "如e小助手";
+            app.Name = "互动课堂";
 
             //程序的决定路径，这里使用程序本身
             app.ProcessImageFileName = System.Windows.Forms.Application.ExecutablePath;

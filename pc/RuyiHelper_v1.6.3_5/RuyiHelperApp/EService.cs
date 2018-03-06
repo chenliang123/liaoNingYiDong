@@ -3548,9 +3548,15 @@ namespace RueHelper
             else
             {
                 Form1.fNotify.Hide();
-            }	
+            }
 
-            string strData = Common.verifyTheTeacher(uid);
+            string url = "http://web.skyeducation.cn/getUserinfo_pc.php?uid=" + uid + "&time=" + time + "&sign" + sign;
+            string ret = HTTPReq.HttpGet(url);
+
+            JObject joStr = (JObject)JsonConvert.DeserializeObject(ret);
+            string cpuid = joStr["data"]["cpuid"].ToString();
+
+            string strData = Common.verifyTheTeacher(cpuid);
             if (strData.Length > 0)
             {
                 System.Web.Script.Serialization.JavaScriptSerializer json = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -3575,7 +3581,7 @@ namespace RueHelper
 
                             //调用控制栏
                             Form1.ShowController(true);
-
+                            EService.setWhiteList();
                             break;
                         }
                         else
@@ -3589,6 +3595,20 @@ namespace RueHelper
             }
             return "seccuss";
         }
+        private string displace(string myStr, string displaceA, string displaceB)
+        {
+            string[] strArrayA = Regex.Split(myStr, displaceA);
+            for (int i = 0; i < strArrayA.Length - 1; i++)
+            {
+                strArrayA[i] += displaceB;
+            }
+            string returnStr = "";
+            foreach (string var in strArrayA)
+            {
+                returnStr += var;
+            }
+            return returnStr;
+        }  
         public static void ShowSelectTeacher(Boolean show, int type)
         {
             if (show)
@@ -3625,6 +3645,21 @@ namespace RueHelper
             }
             Form1.fController.Display(false);
         }
+
+        public static void setWhiteList()
+        {
+            string classId = Global.getClassID() + "";
+            List<User> ulist = m_db.getStudentlist(classId);
+            string cardid = "";
+            if (ulist != null && ulist.Count > 0)
+            {
+                foreach (User u in ulist)
+                {
+                    AnswersCollection.TB_AddtoWhitelist(Global.device, u.cardid+"", 3000);
+                }
+            }
+        }
+
         #endregion
     }
 }

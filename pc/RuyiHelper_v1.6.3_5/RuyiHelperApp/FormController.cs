@@ -55,7 +55,7 @@ namespace RueHelper
 
             this.ShowInTaskbar = false;
             //this.WindowState = FormWindowState.Minimized;
-
+            this.TopMost = true;
             CreatePenPage();
             CreateXitiPage();
 
@@ -757,6 +757,11 @@ namespace RueHelper
         private void pictureBox_main_collect_Click(object sender, EventArgs e)
         {
             this.showColection();
+        }
+
+        private void FormController_Load(object sender, EventArgs e)
+        {
+
         }
 
  

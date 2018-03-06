@@ -100,7 +100,7 @@
             this.Name = "FormNotifyToStart";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "如e小助手";
+            this.Text = "互动课堂";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormNotifyToStart_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormNotifyToStart_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();

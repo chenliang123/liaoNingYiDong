@@ -69,10 +69,10 @@ namespace RueHelper
         internal static extern int TB_EnableWhitelist(int device, int bEnable, int timeout);
 
         [DllImport(DLL_NAME, EntryPoint = "TB_AddtoWhitelist", CallingConvention = CallingConvention.StdCall)]
-        internal static extern int TB_AddtoWhitelist(string cardid);
+        internal static extern int TB_AddtoWhitelist(int device, string cardid, int timeout);
 
         [DllImport(DLL_NAME, EntryPoint = "TB_RemovefromWhitelist", CallingConvention = CallingConvention.StdCall)]
-        internal static extern int TB_RemovefromWhitelist(string cardid);
+        internal static extern int TB_RemovefromWhitelist(int device, char cardid, int timeout);
 
         [DllImport(DLL_NAME, EntryPoint = "TB_GetWhitelist", CallingConvention = CallingConvention.StdCall)]
         internal static extern int TB_GetWhitelist(ulong[] TagID);

@@ -18,7 +18,7 @@ namespace Update
         string zipfile;//获取升级压缩包
         string zipfilePath;
         string zipfileUrl;
-        string ApplicationName = "如e小助手.exe";
+        string ApplicationName = "互动课堂.exe";
         //http://www.cnblogs.com/thornfield_he/archive/2009/09/22/1571914.html
 
         public UpdateBackground()

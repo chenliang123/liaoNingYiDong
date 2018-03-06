@@ -18,7 +18,7 @@ namespace RueHelper
         private static log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private static RueSqlite m_db = new RueSqlite();
-        public static string m_Exe = "如e小助手.exe";
+        public static string m_Exe = "互动课堂.exe";
         private static string m_hdip = "";
         private static string m_hdid = "";
         public static string HOST = "";
@@ -28,6 +28,7 @@ namespace RueHelper
         public static string url_recv = "";
         //public static CoursetableDay[] m_coursetable;
         public static string startPath = Application.StartupPath;
+        public static int device = 0;
 
         public static int panelshow = 1;
         public static string RaiseStu = "";

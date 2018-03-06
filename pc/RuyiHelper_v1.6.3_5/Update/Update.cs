@@ -15,7 +15,7 @@ namespace Update
 {
     class Update
     {
-        string ApplicationName = "如e小助手.exe";
+        string ApplicationName = "互动课堂.exe";
         public Update(string versionS, string zipfileUrl)
         {
             string filename = zipfileUrl.Substring(zipfileUrl.LastIndexOf('/') + 1);

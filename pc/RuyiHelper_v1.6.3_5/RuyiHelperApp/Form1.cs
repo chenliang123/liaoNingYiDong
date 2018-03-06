@@ -105,15 +105,15 @@ namespace RueHelper
             //    this.toolStripMenuItem5.Visible = false;
             //}
 
-            FileInfo fi = new FileInfo(Application.StartupPath+"\\如e小助手.exe");
+            FileInfo fi = new FileInfo(Application.StartupPath+"\\互动课堂.exe");
             string lasttime = fi.LastWriteTime.ToString("yyyyMMdd HHmmss");
             string MMdd = fi.LastWriteTime.ToString("MMdd");
             string version = GetAssembly(typeof(System.Reflection.AssemblyVersionAttribute));
 
             string[] szV = version.Split('.');
             string version_1 = szV[0] + "." + szV[1] + "." + szV[2] + "." + MMdd;
-            this.Text = "如e小助手 v" + version;
-            this.labelAbout.Text = "关于 如e小助手(v" + version_1 + ")";
+            this.Text = "互动课堂 v" + version;
+            this.labelAbout.Text = "关于 互动课堂(v" + version_1 + ")";
 
             //设置自启动
             Log.Info("F1_2 set autorun");

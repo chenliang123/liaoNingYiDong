@@ -52,6 +52,7 @@ namespace RueHelper
                     continue;
                 }
                 device = AnswersCollection.TB_OpenDevice(s.ToString());
+                Global.device = device;
                 if (device > 0)
                 {
                     Console.Write(device);
@@ -63,8 +64,11 @@ namespace RueHelper
 
             AnswersCollection.TB_UpdateTime(device, 3000);
 
-            AnswersCollection.TB_EnableWhitelist(device, 0, 3000);    //旧版本关闭白名单，支持数字答题
+            AnswersCollection.TB_EnableWhitelist(device, 1, 3000);    //旧版本关闭白名单，支持数字答题
+            
+            AnswersCollection.TB_RemovefromWhitelist(device, char.MinValue, 3000);  //每次启动删除白名单
 
+            //AnswersCollection.TB_AddtoWhitelist(device, "0009145950", 3000);
             //AnswersCollection.TB_SetWorkMode(device, TBModeDef.HX_MODE_SINGLE, "", 2000);
         }
 
@@ -73,8 +77,7 @@ namespace RueHelper
             if (msg == AnswersCollection.CALLBACK_MSG.MSG_PULLEDOUT)
             {
                 MessageBox.Show("设备拔出");
-            }
-
+            }           
             if (msg == AnswersCollection.CALLBACK_MSG.MSG_TEST_DATA)
             {
                     string[] s = param2.ToString().Split(new char[] { '"' });
