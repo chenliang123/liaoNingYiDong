@@ -888,7 +888,7 @@ var vm = new Vue({
         	this.isMulCount = false;
         },
         homeFn:function(){
-        	//      	var temp = window.external.extiAnswer();
+          	var temp = window.external.extiAnswer();
 //      	if(temp >= 0){
 //      		window.external.getScreen();
 				this.initFn();

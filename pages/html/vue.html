@@ -18,8 +18,8 @@
 <body>
     <div id="app">
         <div class="wrap" v-cloak>
-            <header v-show="!randomRusult && !isGroup && !randomAnswer && !isVie && !allCount"> <div class="answerTime" v-show="isMulAnswer">作答时间:{{leftTime}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本题已答：0/38</div> {{tiNum}}/{{tiNumAll}}</header>
-            <section class="cont" v-show="!isGroup && !randomRusult && !randomAnswer && !isVie && !allCount">
+            <header v-show="!randomRusult && (!isGroup || (groupStart && !Rank) ) && !randomAnswer && !isVie && !allCount"> <div class="answerTime" v-show="isMulAnswer">作答时间:{{leftTime}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本题已答：0/38</div> {{tiNum}}/{{tiNumAll}}</header>
+            <section class="cont" v-show="(!isGroup || (groupStart && !Rank) ) && !randomRusult && !randomAnswer && !isVie && !allCount">
             	<div v-html="topicCurrent.body"></div>
             </section>
             <footer>
