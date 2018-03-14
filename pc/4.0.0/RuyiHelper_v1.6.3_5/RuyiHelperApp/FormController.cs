@@ -152,25 +152,25 @@ namespace RueHelper
         }
         private void pictureBox_main_exam_Click(object sender, EventArgs e)
         {
-            //截屏
-            Size size = new System.Drawing.Size(screenWidth, SystemInformation.WorkingArea.Height - 80);
-            this.TopMost = false;
-            try
-            {
-                Bitmap bmp = ScreenCapture.captureScreen(0, 0);
-                string base64 = Util.ImgToBase64String(bmp);
-                if (true)
-                {
-                    //调用web
-                    string url = Application.StartupPath + @"\html\exam.html";
-                    Form1.formWeb = new FormWebBrowser();
-                    Form1.formWeb.navigate(url);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex.Message);
-            }
+            ////截屏
+            //Size size = new System.Drawing.Size(screenWidth, SystemInformation.WorkingArea.Height - 80);
+            //this.TopMost = false;
+            //try
+            //{
+            //    Bitmap bmp = ScreenCapture.captureScreen(0, 0);
+            //    string base64 = Util.ImgToBase64String(bmp);
+            //    if (true)
+            //    {
+            //        //调用web
+            //        string url = Application.StartupPath + @"\html\exam.html";
+            //        Form1.formWeb = new FormWebBrowser();
+            //        Form1.formWeb.navigate(url);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error(ex.Message);
+            //}
         }
         private void pictureBox_main_lessonover_Click(object sender, EventArgs e)
         {

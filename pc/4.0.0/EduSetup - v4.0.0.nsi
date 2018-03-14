@@ -73,7 +73,7 @@ ReserveFile "${NSISDIR}\Plugins\splash.dll"
 ReserveFile "splash.png"
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "D:\如e小助手\3.0互动卡版本\互动课堂_${PRODUCT_VERSION}_Beta.exe"
+OutFile "D:\如e小助手\4.0华士精诚答题卡\互动课堂_${PRODUCT_VERSION}_Beta.exe"
 InstallDir "C:\Program Files\互动课堂"
 InstallDirRegKey HKLM "${PRODUCT_UNINST_KEY}" "UninstallString"
 ShowInstDetails show

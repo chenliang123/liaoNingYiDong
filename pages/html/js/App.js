@@ -719,8 +719,17 @@
         },
         selectAnswerFn:function(item){
         	this.selectData = [];
-        	item.isSelect = !item.isSelect;
         	_this = this;
+        	//清除选中学生同组的学生的选中状态
+        	this.groupData.filter(function(e){
+        		e.member.filter(function(sub){
+        			if(sub.groupNum == item.groupNum){
+        				sub.isSelect = false;
+        			}
+        		});
+        	});	
+			item.isSelect = !item.isSelect;
+        	
         	this.groupData.filter(function(e){
         		e.member.filter(function(sub){
         			if(sub.isSelect){

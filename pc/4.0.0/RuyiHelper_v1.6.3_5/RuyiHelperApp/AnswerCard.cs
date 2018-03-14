@@ -97,7 +97,7 @@ namespace RueHelper
                     }
                     else
                     {
-                        if (Global.AnswerStu.IndexOf(s[3]) >= 0)
+                        if (Global.AnswerStu.IndexOf(s[7]) >= 0)
                         {
                             //有的话去重
                             string[] stringArray = Global.AnswerStu.Split('|');
