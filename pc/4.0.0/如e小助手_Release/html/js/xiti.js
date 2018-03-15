@@ -418,12 +418,13 @@ var vm = new Vue({
 				    ]
 				};
         	myChart.setOption(option);
-        	this.isAllCount  = !this.isAllCount;
-        	this.allCount = !this.allCount;
-        	this.toCountFn();
         	this.upDataXiti();
         },
         upDataXiti:function(){
+        	if(this.answerData){
+        		this.isAllCount  = !this.isAllCount;
+        		this.allCount = !this.allCount;
+        		this.toCountFn();
         	  var _this = this;
 	          var answerData = "";
 	          answerData = window.external.getAnswerList();
@@ -434,7 +435,7 @@ var vm = new Vue({
 	          	   		answerData[index] = answerData[index] + ":5"
 	          	   };
 	          	   answerData = answerData.join(",");
-	          };   
+	          };
         	this.$http.post('http://api.skyeducation.cn/EduApi_Test/pcgroupnet?action=addXitiResult',
 				        	  	{
 				        	  	lessonid:_this.lessonid,
@@ -456,6 +457,7 @@ var vm = new Vue({
 				            }, function (res) {
 
 				           });
+			}
         },
         idReplace:function(item){
         	item = item.split(":");
